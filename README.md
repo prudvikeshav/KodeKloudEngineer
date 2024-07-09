@@ -10,7 +10,7 @@ To use this repository:
 
 Clone the repository to your local machine:
 ```bash
-git clone `https://gitlab.com/prudhvikeshavdevops/kodekloud-engineer.git` 
+git clone `https://github.com/prudvikeshav/KodekloudEnginner.git` 
 ```
 Navigate to the specific lab folder you are interested in.
 
