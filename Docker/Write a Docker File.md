@@ -6,7 +6,7 @@
 
 # Solution:
 
-### Write docker file to install apache2
+### *Write docker file to install apache2*
 ```bash
 FROM ubuntu
 RUN apt update
@@ -14,7 +14,7 @@ RUN apt install -y apache2
 RUN sed -i 's/80/8082/g' etc/apache2/ports.conf
 ENTRYPOINT ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
 ```
-### Build the docker image with Docker file
+### *Build the docker image with Docker file*
 
 ```bash
 docker build -t apache:test .
