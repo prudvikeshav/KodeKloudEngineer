@@ -12,7 +12,7 @@
 
 ## Solution
 
-### *Login into appserver1 and check for images
+### Login into appserver1 and check for images
 
 ```bash
 [root@stapp01 tony]# docker image list
@@ -41,7 +41,7 @@ ubuntu       latest    35a88802559d   4 weeks ago     78MB
 
 ## Output
 
-``bash
+```bash
 [root@stapp03 banner]# docker image list
 REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
 cluster      devops    d5dc2018d4da   8 minutes ago   116MB
