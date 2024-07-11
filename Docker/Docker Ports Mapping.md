@@ -11,10 +11,13 @@
 ## Solution
 
 ### Docker pull image nginx:alpine-perl
+
 ```bash
 docker pull nginx:alpine-perl
 ```
+
 ### Docker conatiner demo with hostport 8089, container port 80
+
 ```bash
  docker run -d -it --name=demo -p 8089:80 nginx:alpine-perl
  ```
