@@ -8,7 +8,7 @@
 
 #### Limits: Memory: 20Mi, CPU: 100m
 
-### Statement
+### Solution
 
 #### Creating a pod with resource limits
 

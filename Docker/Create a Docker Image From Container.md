@@ -1,20 +1,24 @@
-# Problem Statement
-### *One of the Nautilus developer was working to test new changes on a container. He wants to keep a backup of his changes to the container. A new request has been raised for the DevOps team to create a new image from this container. Below are more details about it:*
+#### Problem Statement
 
-### *a. Create an image games:nautilus on Application Server 2 from a container ubuntu_latest that is running on same server.*
+#### *One of the Nautilus developer was working to test new changes on a container. He wants to keep a backup of his changes to the container. A new request has been raised for the DevOps team to create a new image from this container. Below are more details about it:*
 
-# Solution
+#### *a. Create an image games:nautilus on Application Server 2 from a container ubuntu_latest that is running on same server.*
 
-### list the container running.
+### Solution
+
+#### list the container running
+
 ```bash
 docker container ls
 ```
-### To Create a new image from a container's changes.
+
+#### To Create a new image from a container's changes
+
 ```bash
 docker container commit 164a6eba532f games:nautilus
 ```
 
-# Output:
+#### Output
 
 ```bash
 [root@stapp02 steve]# docker images
