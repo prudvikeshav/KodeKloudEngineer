@@ -1,18 +1,18 @@
-**Problem Statement:**
+# **Problem Statement:**
 
-#### *The Nautilus DevOps team possesses confidential data on App Server 3 in the Stratos Datacenter. A container named ubuntu_latest is running on the same server.*
+## *The Nautilus DevOps team possesses confidential data on App Server 3 in the Stratos Datacenter. A container named ubuntu_latest is running on the same server.*
 
-#### *Copy an encrypted file /tmp/nautilus.txt.gpg from the docker host to the ubuntu_latest container located at /tmp/. Ensure the file is not modified during this operation.*
+### *Copy an encrypted file /tmp/nautilus.txt.gpg from the docker host to the ubuntu_latest container located at /tmp/. Ensure the file is not modified during this operation.*
 
 **Solution:**
 
-#### Copy file from local to container
+### Copy file from local to container
 
 ```bash
 docker cp /tmp/nautilus.txt.gpg ubuntu_latest:/tmp
 ```
 
-#### To check the file copied or not
+### To check the file copied or not
 
 ```bash
 [root@stapp03 banner]# docker exec -it ubuntu_latest /bin/bash
