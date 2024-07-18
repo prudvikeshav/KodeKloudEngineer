@@ -4,7 +4,7 @@
 
 #### 1.) Modify the service nodeport from 30008 to 32165
 
-##### 2.) Change the replicas count from 1 to 5
+#### 2.) Change the replicas count from 1 to 5
 
 #### 3.) Update the image from nginx:1.19 to nginx:latest
 
@@ -70,4 +70,4 @@ thor@jumphost ~$ kubectl get deployments.apps
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   5/5     5            5           7m6s
 
-#### to check its working fine Click on the app button on right top if your browser
+#### To check its working fine Click on the app button on right top if your browser
