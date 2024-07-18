@@ -50,3 +50,21 @@ kubectl get cronjobs.batch
 NAME         SCHEDULE       SUSPEND   ACTIVE   LAST SCHEDULE   AGE
 datacenter   */10* ** *   False     0        23s             3m41s
 ```
+
+#### To check the jobs created
+
+```bash
+kubectl get jobs.batch --watch
+```
+
+```
+NAME                  COMPLETIONS   DURATION   AGE
+datacenter-28688660   1/1           11s        7m32s
+```
+
+#### To check the output of the job
+
+```bash
+kubectl logs datacenter-28688660-qzwkh
+Welcome to xfusioncorp!
+```
