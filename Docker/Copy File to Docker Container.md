@@ -4,7 +4,7 @@
 
 ### *Copy an encrypted file /tmp/nautilus.txt.gpg from the docker host to the ubuntu_latest container located at /tmp/. Ensure the file is not modified during this operation.*
 
-**Solution:**
+# **Solution:**
 
 ### Copy file from local to container
 
