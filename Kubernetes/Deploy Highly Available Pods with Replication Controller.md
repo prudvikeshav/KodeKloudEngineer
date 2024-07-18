@@ -39,14 +39,20 @@ spec:
 #### Apply the created replication yaml file
 
 ```bash
-thor@jumphost ~$ kubectl apply -f replication.yaml 
+kubectl apply -f replication.yaml 
+```
+
+```
 replicationcontroller/nginx-replicationcontroller created
 ```
 
 #### Check the replication controller created
 
 ```bash
-thor@jumphost ~$ kubectl get replicationcontrollers 
+kubectl get replicationcontrollers 
+```
+
+```
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-replicationcontroller   3         3         3       37s
 ```
@@ -54,7 +60,10 @@ nginx-replicationcontroller   3         3         3       37s
 #### Verify the details applied corectly apllied or not
 
 ```bash
-thor@jumphost ~$ kubectl describe replicationcontrollers nginx-replicationcontroller 
+kubectl describe replicationcontrollers nginx-replicationcontroller 
+```
+
+```
 Name:         nginx-replicationcontroller
 Namespace:    default
 Selector:     app=nginx_app,type=front-end
