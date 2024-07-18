@@ -66,7 +66,7 @@ Events:
   Normal  ScalingReplicaSet  86s   deployment-controller  Scaled up replica set nginx-deployment-989f57c54 to 3
 ```
 
-#### We can see nginx:1.16 was deployed and Strategy was Rolling update
+#### We can see image nginx:1.16 was deployed and Strategy was Rolling update
 
 #### Now we need to update the image from nginx:1.16 to nginx:1.18
 
