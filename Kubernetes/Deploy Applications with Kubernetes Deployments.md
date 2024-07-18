@@ -18,6 +18,6 @@ kubectl create deployment nginx --image=nginx:latest
 
 ```bash
 kubectl get deployments.apps 
-NAME    READY   UP-TO-DATE   AVAILABLE   AGE
-nginx   1/1     1            1           10s
+> NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+> nginx   1/1     1            1           10s
 ```
