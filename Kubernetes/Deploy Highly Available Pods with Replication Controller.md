@@ -55,6 +55,8 @@ nginx-replicationcontroller   3         3         3       37s
 
 ```bash
 kubectl describe replicationcontrollers nginx-replicationcontroller 
+```
+
 [!Output]
 > Name:         nginx-replicationcontroller
 > Namespace:    default
@@ -83,4 +85,3 @@ Events:
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-ccmzz
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-5xnrp
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-l6z6p
-```
