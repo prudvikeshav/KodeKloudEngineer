@@ -55,31 +55,32 @@ nginx-replicationcontroller   3         3         3       37s
 
 ```bash
 kubectl describe replicationcontrollers nginx-replicationcontroller 
->Name:         nginx-replicationcontroller
->Namespace:    default
->Selector:     app=nginx_app,type=front-end
->Labels:       app=nginx_app
+[!Output]
+> Name:         nginx-replicationcontroller
+> Namespace:    default
+> Selector:     app=nginx_app,type=front-end
+> Labels:       app=nginx_app
               type=front-end
->Annotations:  <none>
->Replicas:     3 current / 3 desired
->Pods Status:  3 Running / 0 Waiting / 0 Succeeded / 0 Failed
->Pod Template:
->   Labels:  app=nginx_app
->            type=front-end
->   Containers:
->     nginx-container:
->     Image:         nginx:latest
->     Port:          80/TCP
->     Host Port:     0/TCP
->     Environment:   <none>
->     Mounts:        <none>
->     Volumes:         <none>
->     Node-Selectors:  <none>
->     Tolerations:     <none>
->Events:
-> Type    Reason            Age   From                    Message
-> ----    ------            ----  ----                    -------
-> Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-ccmzz
-> Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-5xnrp
-> Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-l6z6p
+Annotations:  <none>
+Replicas:     3 current / 3 desired
+Pods Status:  3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app=nginx_app
+           type=front-end
+  Containers:
+   nginx-container:
+    Image:         nginx:latest
+    Port:          80/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-ccmzz
+  Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-5xnrp
+  Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-l6z6p
 ```
