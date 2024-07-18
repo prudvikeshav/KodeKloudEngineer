@@ -56,7 +56,7 @@ spec:
 
 #### Apply the above Pod yaml
 
-```bash
-kubectl apply -f pod.yaml 
+``
+kubectl apply -f pod.yaml
 >pod/time-check created
-```
+``
