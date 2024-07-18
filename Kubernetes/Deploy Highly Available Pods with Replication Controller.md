@@ -57,11 +57,12 @@ nginx-replicationcontroller   3         3         3       37s
 kubectl describe replicationcontrollers nginx-replicationcontroller 
 ```
 
-[!Output]
-> Name:         nginx-replicationcontroller
-> Namespace:    default
-> Selector:     app=nginx_app,type=front-end
-> Labels:       app=nginx_app
+<details>
+  <summary>Output</summary>
+ Name:         nginx-replicationcontroller
+ Namespace:    default
+ Selector:     app=nginx_app,type=front-end
+ Labels:       app=nginx_app
               type=front-end
 Annotations:  <none>
 Replicas:     3 current / 3 desired
@@ -85,3 +86,4 @@ Events:
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-ccmzz
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-5xnrp
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-l6z6p
+</details>
