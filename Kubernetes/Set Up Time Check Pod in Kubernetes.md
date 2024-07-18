@@ -16,14 +16,14 @@
 
 ```bash
 kubectl create namespace devops
-namespace/devops created
+>namespace/devops created
 ```
 
 #### To create a configMap
 
 ```bash
 kubectl create configmap time-config --from-literal=TIME_FREQ=12
-configmap/time-config created
+>configmap/time-config created
 ```
 
 #### We need to create a Pod yaml file
@@ -58,5 +58,5 @@ spec:
 
 ```bash
 kubectl apply -f pod.yaml 
-pod/time-check created
+>pod/time-check created
 ```
