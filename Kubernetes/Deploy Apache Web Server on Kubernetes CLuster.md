@@ -96,7 +96,7 @@ NAME                     TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        
 httpd-service-nautilus   NodePort   10.96.14.204   <none>        80:30004/TCP   10s
 ```
 
-#### To check the deployments ceeated
+#### To check the deployments created
 
 ```bash
 kubectl get deployments.apps -n httpd-namespace-nautilus
