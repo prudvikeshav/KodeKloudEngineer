@@ -71,7 +71,9 @@ volume-share-datacenter   2/2     Running   0          22s
 
 #### We need create a file media.txt on container 1
 
+```
 kubectl exec -it volume-share-datacenter /bin/bash -c volume-container-datacenter-1
+```
 
 ```
 root@volume-share-datacenter:/# cd /tmp/media/
