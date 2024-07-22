@@ -4,23 +4,23 @@
 
 - #### Create a deployment iron-gallery-deployment-datacenter for iron gallery under the same namespace you created
 
-- #### Labels run should be iron-gallery
+    - #### Labels run should be iron-gallery
 
-- #### Replicas count should be 1
+    - #### Replicas count should be 1
 
-- #### Selector's matchLabels run should be iron-gallery
+    - #### Selector's matchLabels run should be iron-gallery
 
-- #### Template labels run should be iron-gallery under metadata
+    - #### Template labels run should be iron-gallery under metadata
 
-- #### The container should be named as iron-gallery-container-datacenter, use kodekloud/irongallery:2.0 image ( use exact image name / tag )
+    - #### The container should be named as iron-gallery-container-datacenter, use kodekloud/irongallery:2.0 image ( use exact image name / tag )
 
-- #### Resources limits for memory should be 100Mi and for CPU should be 50m
+    - #### Resources limits for memory should be 100Mi and for CPU should be 50m
 
-- #### First volumeMount name should be config, its mountPath should be /usr/share/nginx/html/data
+    - #### First volumeMount name should be config, its mountPath should be /usr/share/nginx/html/data
 
-- #### Second volumeMount name should be images, its mountPath should be /usr/share/nginx/html/uploads
+    - #### Second volumeMount name should be images, its mountPath should be /usr/share/nginx/html/uploads
 
-- #### First volume name should be config and give it emptyDir and second volume name should be images, also give it emptyDir
+    - #### First volume name should be config and give it emptyDir and second volume name should be images, also give it emptyDir
 
 - #### Create a deployment iron-db-deployment-datacenter for iron db under the same namespace
 
