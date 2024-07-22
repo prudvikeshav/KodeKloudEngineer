@@ -1,3 +1,4 @@
+**Problem Statement**
 #### There is an iron gallery app that the Nautilus DevOps team was developing. They have recently customized the app and are going to deploy the same on the Kubernetes cluster. Below you can find more details
 
 - #### Create a namespace iron-namespace-datacenter
@@ -24,19 +25,19 @@
 
 - #### Create a deployment iron-db-deployment-datacenter for iron db under the same namespace
 
-- #### Labels db should be mariadb
+    - #### Labels db should be mariadb
 
-- #### Replicas count should be 1
+    - #### Replicas count should be 1
 
-- #### Selector's matchLabels db should be mariadb
+    - #### Selector's matchLabels db should be mariadb
 
-- #### Template labels db should be mariadb under metadata
+    - #### Template labels db should be mariadb under metadata
 
-- #### The container name should be iron-db-container-datacenter, use kodekloud/irondb:2.0 image ( use exact image name / tag )
+    - #### The container name should be iron-db-container-datacenter, use kodekloud/irondb:2.0 image ( use exact image name / tag )
 
-- #### Define environment, set MYSQL_DATABASE its value should be database_host, set MYSQL_ROOT_PASSWORD and MYSQL_PASSWORD value should be with some complex passwords for DB connections, and MYSQL_USER value should be any custom user ( except root )
+    - #### Define environment, set MYSQL_DATABASE its value should be database_host, set MYSQL_ROOT_PASSWORD and MYSQL_PASSWORD value should be with some complex              passwords for DB connections, and MYSQL_USER value should be any custom user ( except root )
 
-- #### Volume mount name should be db and its mountPath should be /var/lib/mysql. Volume name should be db and give it an emptyDir
+    - #### Volume mount name should be db and its mountPath should be /var/lib/mysql. Volume name should be db and give it an emptyDir
 
 - #### Create a service for iron db which should be named iron-db-service-datacenter under the same namespace. Configure spec as selector's db should be mariadb. Protocol should be TCP, port and targetPort should be 3306 and its type should be ClusterIP
 
