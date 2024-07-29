@@ -45,19 +45,20 @@ metadata:
    name: webserver
 spec:
   containers:
-    image: nginx:latest
-    name: nginx-container
-    volumeMounts:
-       name: shared-logs
-       mountPath: /var/log/nginx
-  initContainers:       
-    image: ubuntu:latest
+  -  image: nginx:latest
+     name: nginx-container
+     volumeMounts:
+     -  name: shared-logs
+        mountPath: /var/log/nginx
+         
+  - image: ubuntu:latest
     name: sidecar-container
     volumeMounts:
-       name: shared-logs
+    -  name: shared-logs
        mountPath: /var/log/nginx
-    args: ["sh","-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done"]
+    command: ["/bin/sh"]
+    args: ["-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done"]
   volumes:
-     name: shared-logs
+  -  name: shared-logs  
      emptyDir: {}  
 ```
