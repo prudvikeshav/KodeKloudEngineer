@@ -17,3 +17,27 @@ The Nautilus DevOps team is working on to setup some pre-requisites for an appli
 - Use command ["/bin/sh", "-c", 'echo "$(GREETING) $(COMPANY) $(GROUP)"'] (please use this exact command), also set its restartPolicy policy to Never to avoid crash loop back.
 
 - You can check the output using kubectl logs -f print-envars-greeting command.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: print-envars-greeting
+spec:
+  containers:
+  - image: bash
+    name: print-envars-greeting
+    env:
+    - name: GREETING
+      value: Welcome to
+    - name: COMPANY
+      value: xFusionCorp
+    - name: GROUP
+      value: Industries
+    command: ["/bin/sh", "-c", 'echo "$(GREETING) $(COMPANY) $(GROUP)"']
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+```
