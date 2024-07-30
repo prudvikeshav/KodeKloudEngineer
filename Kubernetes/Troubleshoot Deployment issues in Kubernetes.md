@@ -88,7 +88,7 @@ LAST SEEN   TYPE      REASON                    OBJECT                          
 8m53s       Normal    Starting                  node/kodekloud-control-plane
 8m52s       Normal    NodeReady                 node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeReady
 7m43s       Normal    Scheduled                 pod/redis-deployment-54cdf4f76d-lvj2m    Successfully assigned default/redis-deployment-54cdf4f76d-lvj2m to kodekloud-control-plane
-90s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    `**MountVolume.SetUp failed for volume "config" : configmap "redis-conig" not found**`
+90s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    <span style="color: red;">MountVolume.SetUp failed for volume "config" : configmap "redis-conig" not found</span>
 69s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    Unable to attach or mount volumes: unmounted volumes=[config], unattached volumes=[], failed to process volumes=[]: timed out waiting for the condition
 
 7m43s       Normal    SuccessfulCreate          replicaset/redis-deployment-54cdf4f76d   Created pod: redis-deployment-54cdf4f76d-lvj2m
