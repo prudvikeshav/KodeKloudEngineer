@@ -4,7 +4,7 @@ Last week, the Nautilus DevOps team deployed a redis app on Kubernetes cluster, 
 
 T- he deployment name is redis-deployment. The pods are not in running state right now, so please look into the issue and fix the same.
 
-# **Solution:**
+# **Solution**
 
 First check the pods that are present
 

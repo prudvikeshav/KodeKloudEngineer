@@ -10,13 +10,31 @@ There is a production deployment planned for next week. The Nautilus DevOps team
 
 # **Solution:**
 
+We need to create a namespace datacenter
+
+```bash
 kubectl create namespace datacenter
+```
+
+```
 namespace/datacenter created
+```
 
+We can change our context from default namespace to newly created namespace datacenter
+
+```bash
 kubectl config set-context --current --namespace=datacenter
-Context "kind-kodekloud" modified.
+```
 
+```
+Context "kind-kodekloud" modified.
+```
+
+We need to create a deployment named http-deploy with the given above requirements
+
+```
 kubectl create deployment httpd-deploy --namespace=datacenter --image=httpd:2.4.28 --replicas=2 --dry-run=client -o yaml
+```
 
 ```yaml
 apiVersion: apps/v1
@@ -46,7 +64,9 @@ spec:
         name: httpd
         resources: {}
 status: {}
+```
 
+Now we need to create an Nodeport service.
 
 ```yaml
 apiVersion: v1
@@ -67,3 +87,4 @@ spec:
   type: NodePort
 status:
   loadBalancer: {}
+```
