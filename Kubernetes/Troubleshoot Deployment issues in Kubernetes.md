@@ -23,6 +23,7 @@ As we know a redis deployment has been deployed before and we need to check why 
 kubectl describe deployments.apps redis-deployment 
 ```
 
+```
 Name:                   redis-deployment
 Namespace:              default
 CreationTimestamp:      Tue, 30 Jul 2024 04:46:52 +0000
@@ -68,16 +69,15 @@ Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  98s   deployment-controller  Scaled up replica set redis-deployment-54cdf4f76d to 1
-
-```
-From the describe of the deployment we can see the wrong image name was specified. that needs to be updated. In order find all errors we can check on events. 
 ```
 
+From the describe of the deployment we can see the wrong image name was specified. that needs to be updated. In order find all errors we can check on events.
+
+```
 kubectl get  events
-
-```
 ```
 
+```
 LAST SEEN   TYPE      REASON                    OBJECT                                   MESSAGE
 9m12s       Normal    Starting                  node/kodekloud-control-plane             Starting kubelet.
 9m11s       Normal    NodeHasSufficientMemory   node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeHasSufficientMemory
@@ -92,6 +92,6 @@ LAST SEEN   TYPE      REASON                    OBJECT                          
 69s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    Unable to attach or mount volumes: unmounted volumes=[config], unattached volumes=[], failed to process volumes=[]: timed out waiting for the condition
 7m43s       Normal    SuccessfulCreate          replicaset/redis-deployment-54cdf4f76d   Created pod: redis-deployment-54cdf4f76d-lvj2m
 7m43s       Normal    ScalingReplicaSet         deployment/redis-deployment              Scaled up replica set redis-deployment-54cdf4f76d to 1
-
 ```
+
 Now we can also observe the configMap name was specified wrong. its also be updated.
