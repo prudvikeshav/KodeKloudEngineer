@@ -41,8 +41,10 @@ spec:
         name: centos-ssh-enabled
         resources: {}
 status: {}
+```
 
 A service need to be created inorder to connect the containers to outside traffic. A nodeport service has been created
+
 ```
 
 kubectl create service nodeport --tcp=8080:8080 --node-port=30012 kodekloud-svc --dry-run=client -o yaml
