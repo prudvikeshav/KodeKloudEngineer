@@ -43,7 +43,7 @@ spec:
 status: {}
 ```
 
-A service need to be created inorder to connect the containers to outside traffic. A nodeport service has been created
+A service need to be created inorder to connect the containers to outside traffic. A nodeport service has to be created.
 
 ```
 
