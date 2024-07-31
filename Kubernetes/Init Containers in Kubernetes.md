@@ -17,3 +17,49 @@ Create a Deployment named as ic-deploy-xfusion.
 
 - Volume to be named as ic-volume-xfusion and it should be an emptyDir type.
 
+# **Solution:**
+
+The deplyment file with the requirements mentioned below
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ic-xfusion
+  name: ic-deploy-xfusion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ic-xfusion
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ic-xfusion
+    spec:
+      containers:
+      - image: fedora:latest
+        name: ic-main-xfusion
+        command: ["/bin/bash"]
+        args: ["-c","while true; do cat /ic/news; sleep 5; done"]
+        volumeMounts:
+        -  name: ic-volume-xfusion
+           mountPath: /ic 
+
+      initContainers: 
+      - name: ic-msg-xfusion
+        image: fedora:latest
+        command: ["/bin/bash"]
+        args: ["-c","echo Init Done - Welcome to xFusionCorp Industries > /ic/news"]
+        volumeMounts: 
+        - name: ic-volume-xfusion
+          mountPath: /ic
+    volumes:
+    - name: ic-volume-xfusion
+      emptyDir: {}
+    
+        resources: {}
+status: {}
+```
