@@ -40,7 +40,7 @@ metadata:
 spec:
   containers:
   - image: busybox:latest
-    name: envars
+    name: fieldref-container
     command: ["sh","-c"]
     args:
     - while true; do
@@ -55,23 +55,21 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
 
-    - name: POD_IP
+    - name: POD_NAME
       valueFrom: 
             fieldRef:
-              fieldPath: status.podIP
+              fieldPath: metadata.name
 
-    - name: POD_NAME
+    - name: POD_IP
       valueFrom:
             fieldRef:
-              fieldPath: metadata.name
+              fieldPath: status.podIP
 
     - name: POD_SERVICE_ACCOUNT
       valueFrom:
             fieldRef:
               fieldPath: spec.serviceAccountName
-
   restartPolicy: Never
-status: {}
 ```
 To check the pod created
 ```
