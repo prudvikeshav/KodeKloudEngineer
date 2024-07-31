@@ -60,5 +60,6 @@ spec:
     args: ["-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done"]
   volumes:
   -  name: shared-logs  
-     emptyDir: {}  
+     emptyDir: {} 
+dnsPolicy: Default
 ```
