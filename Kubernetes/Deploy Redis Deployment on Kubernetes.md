@@ -21,3 +21,59 @@ redis:alpine image and container name should be redis-container. Also make sure 
      - The container should expose the port 6379.
 
 Finally, redis-deployment should be in an up and running state.
+
+
+# **Solution:**
+First we need to create an configmap 
+
+```
+kubectl create configmap my-redis-config --from-literal=maxmemory=2mb
+configmap/my-redis-config created
+```
+Now we need to create an deployment with given requirements
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis-deployment
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: redis-deployment
+    spec:
+      containers:
+      - image: redis:alpine
+        name: redis-container
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            cpu: 1
+        volumeMounts:
+        - name: data
+          mountPath: /redis-master-data
+        - name: redis-config
+          mountPath: /redis-master
+      volumes:
+      - name: redis-config
+        configMap: 
+          name: my-redis-config
+      - name: data
+        emptyDir: {}
+status: {}
+
+Apply the redis.yaml file 
+```
+kubectl apply -f redis.yaml 
+deployment.apps/redis-deployment created
+```
