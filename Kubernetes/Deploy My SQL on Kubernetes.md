@@ -32,3 +32,114 @@ A new MySQL server needs to be deployed on Kubernetes cluster. The Nautilus DevO
 
 
     - name: MYSQL_PASSWORD, should pick value from secretKeyRef name: mysql-user-pass and key: password
+
+# **Solution:**
+
+We need to create secrets for the mysql environment variables
+
+```bash
+kubectl create secret generic mysql-root-pass --from-literal=password=YUIidhb667
+kubectl create secret generic mysql-user-pass --from-literal=username=kodekloud_rin --from-literal=password=GyQkFRVNr3
+kubectl create secret generic --from-literal=database=kodekloud_db10 mysql-db-url
+```
+Manifest file for deployment,Persistent volume, Persistent volumeclaim and nodeport service
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  ports:
+  - name: mysql
+    nodePort: 30007
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app: mysql
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 250Mi
+  storageClassName: slow
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 250Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mysql
+  storageClassName: slow
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-root-pass
+              key: password
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-db-url
+              key: database
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-user-pass
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-user-pass
+              key: password
+        
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: mysql
+        ports:
+        - containerPort: 3306
+      volumes:
+      - name: mysql
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim 
+
+```
