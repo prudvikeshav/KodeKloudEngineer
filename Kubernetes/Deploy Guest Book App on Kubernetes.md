@@ -48,3 +48,222 @@ FRONT END TIER
 - Create a service named frontend. Its type should be NodePort, port should be 80 and its nodePort should be 30009.
 
 Finally, you can check the guestbook app by clicking on App button.
+
+# **Solution:**
+Manifest file for Backend Tier
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis
+  name: redis-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  strategy: {}
+  template:
+    metadata:
+      
+      labels:
+        app: redis
+    spec:
+      containers:
+      - image: redis
+        name: master-redis-xfusion
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  
+  labels:
+    app: redis
+  name: redis-master
+spec:
+  ports:
+  - name: redis-master
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis-slave
+  name: redis-slave
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-slave
+  strategy: {}
+  template:
+    metadata:
+      
+      labels:
+        app: redis-slave
+    spec:
+      containers:
+      - image: gcr.io/google_samples/gb-redisslave:v3
+        name: slave-redis-xfusion
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  
+  labels:
+    app: redis-slave
+  name: redis-slave
+spec:
+  ports:
+  - name: redis-slave
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis-slave
+  type: ClusterIP
+status:
+  loadBalancer: {}
+```
+Now we will apply this yaml file
+```bash
+kubectl apply -f backend.yaml 
+```
+Output:
+```
+deployment.apps/redis-master created
+service/redis-master created
+deployment.apps/redis-slave created
+service/redis-slave created
+```
+
+Manifest file Frontend Tier
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: gcr.io/google-samples/gb-frontend@sha256:cbc8ef4b0a2d0b95965e0e7dc8938c270ea98e34ec9d60ea64b2d5f2df2dfbbf
+        name: php-redis-xfusion
+        ports:
+        - containerPort: 80
+        resources: 
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  ports:
+  - name: frontend
+    nodePort: 30009
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend
+  type: NodePort
+status:
+  loadBalancer: {}
+```
+Now we will apply the frontend yaml file
+```bash
+kubectl apply -f frontend.yaml 
+```
+output:
+```
+deployment.apps/frontend created
+service/frontend created
+```
+The view all deployments,services and pods we created
+```bash
+kubectl get all
+```
+Output:
+```
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/frontend-75d9985df9-685dp       1/1     Running   0          19s
+pod/frontend-75d9985df9-hsmhf       1/1     Running   0          19s
+pod/frontend-75d9985df9-vdnvw       1/1     Running   0          19s
+pod/redis-master-54dd49b469-5tnns   1/1     Running   0          7m58s
+pod/redis-slave-67f788df9c-rk4pt    1/1     Running   0          10m
+pod/redis-slave-67f788df9c-w4q6w    1/1     Running   0          10m
+
+NAME                   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/frontend       NodePort    10.96.190.91   <none>        80:30009/TCP   19s
+service/kubernetes     ClusterIP   10.96.0.1      <none>        443/TCP        34m
+service/redis-master   ClusterIP   10.96.12.9     <none>        6379/TCP       10m
+service/redis-slave    ClusterIP   10.96.203.92   <none>        6379/TCP       10m
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/frontend       3/3     3            3           19s
+deployment.apps/redis-master   1/1     1            1           10m
+deployment.apps/redis-slave    2/2     2            2           10m
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/frontend-75d9985df9       3         3         3       19s
+replicaset.apps/redis-master-54dd49b469   1         1         1       7m58s
+replicaset.apps/redis-master-6f846d5cf7   0         0         0       10m
+replicaset.apps/redis-slave-67f788df9c    2         2         2       10m
+```
