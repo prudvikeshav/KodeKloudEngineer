@@ -1,16 +1,16 @@
-**Problem Statement**
+## Problem Statement
 
-#### The Nautilus DevOps team is establishing a ReplicationController to deploy multiple pods for hosting applications that require a highly available infrastructure. Follow the specifications below to create the ReplicationController
+ The Nautilus DevOps team is establishing a ReplicationController to deploy multiple pods for hosting applications that require a highly available infrastructure. Follow the specifications below to create the ReplicationController
 
-#### Create a ReplicationController using the nginx image, preferably with latest tag, and name it nginx-replicationcontroller
+ Create a *ReplicationController* using the *nginx* image, preferably with latest tag, and name it *nginx-replicationcontroller*
 
-#### Assign labels app as nginx_app, and type as front-end. Ensure the container is named nginx-container and set the replica count to 3
+ Assign labels *app* as *nginx_app*, and *type* as *front-end*. Ensure the container is named *nginx-container* and set the replica count to *3*.
 
-#### All pods should be running state post-deployment
+ All pods should be running state post-deployment
 
-**Solution**
+## Solution
 
-#### Create a replication controller using the given details
+ Create a replication controller using the given details.
 
 ```yaml
 apiVersion: v1
@@ -36,7 +36,7 @@ spec:
         - containerPort: 80
 ```
 
-#### Apply the created replication yaml file
+ Apply the created replication yaml file.
 
 ```bash
 kubectl apply -f replication.yaml 
@@ -46,7 +46,7 @@ kubectl apply -f replication.yaml
 replicationcontroller/nginx-replicationcontroller created
 ```
 
-#### Check the replication controller created
+ Check the replication controller created.
 
 ```bash
 kubectl get replicationcontrollers 
@@ -57,7 +57,7 @@ NAME                          DESIRED   CURRENT   READY   AGE
 nginx-replicationcontroller   3         3         3       37s
 ```
 
-#### Verify the details applied corectly apllied or not
+ Verify whether the details are applied correctly or not.
 
 ```bash
 kubectl describe replicationcontrollers nginx-replicationcontroller 
