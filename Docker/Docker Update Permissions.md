@@ -1,35 +1,37 @@
-### Problem Statement
+## Problem Statement
 
-#### *One of the Nautilus project developers need access to run docker commands on App Server 2. This user is already created on the server. Accomplish this task as per details given below:*
+ One of the Nautilus project developers need access to run docker commands on App Server 2. This user is already created on the server. Accomplish this task as per details given below:
 
-#### *User rose is not able to run docker commands on App Server 2 in Stratos DC, make the required changes so that this user can run docker commands without sudo.*
+ User rose is not able to run docker commands on App Server 2 in Stratos DC, make the required changes so that this user can run docker commands without sudo.
 
-### Solution
+## Solution
 
-#### Check if docker Wheel group
+ Check if docker Wheel group.
 
 ```bash
 groupadd docker
 ```
 
-#### Add user rose to the group
+ Add user rose to the group.
 
 ```bash
 gpasswd -a rose docker
 ```
 
-#### switch to user rose
+ Switch to user rose.
 
 ```bash
 su rose
 ```
 
-### Output
+ Output
 
 ```bash
 [rose@stapp02 steve]$ docker image ls -a
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+```
 
+```
 [rose@stapp02 steve]$ docker pull  nginx
 Using default tag: latest
 latest: Pulling from library/nginx
