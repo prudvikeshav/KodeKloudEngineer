@@ -1,4 +1,4 @@
-## Problem Statement:
+ ## Problem Statement:
 
 A new MySQL server needs to be deployed on Kubernetes cluster. The Nautilus DevOps team was working on to gather the requirements. Recently they were able to finalize the requirements and shared them with the team members to start working on it. Below you can find the details:
 
@@ -7,7 +7,7 @@ A new MySQL server needs to be deployed on Kubernetes cluster. The Nautilus DevO
 - Create a PersistentVolume *mysql-pv*, its capacity should be 250Mi, set other parameters as per your preference.
 
 
-- Create a PersistentVolumeClaim to request this PersistentVolume storage. Name it as*mysql-pv-claim* and request a *250Mi* of storage. Set other parameters as per your preference.
+- Create a PersistentVolumeClaim to request this PersistentVolume storage. Name it as *mysql-pv-claim* and request a *250Mi* of storage. Set other parameters as per your preference.
 
 
 - Create a deployment named *mysql-deployment*, use any *mysql* image as per your preference. Mount the PersistentVolume at mount path */var/lib/mysql*.
@@ -33,7 +33,7 @@ A new MySQL server needs to be deployed on Kubernetes cluster. The Nautilus DevO
 
     - name: MYSQL_PASSWORD, should pick value from secretKeyRef name: *mysql-user-pass* and key: *password*
 
-## Solution:
+ ## Solution:
 
 We need to create secrets for the MySQL environment variables.
 
