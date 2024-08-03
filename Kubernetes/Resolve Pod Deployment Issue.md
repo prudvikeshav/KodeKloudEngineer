@@ -1,28 +1,30 @@
-**Problem Statement**
+## Problem Statement:
 
-#### A junior DevOps team member encountered difficulties deploying a stack on the Kubernetes cluster. The pod fails to start, presenting errors. Let's troubleshoot and rectify the issue promptly
+ A junior DevOps team member encountered difficulties deploying a stack on the Kubernetes cluster. The pod fails to start, presenting errors. Let's troubleshoot and rectify the issue promptly
 
-#### There is a pod named webserver, and the container within it is named httpd-container, its utilizing the httpd:latest image
+- There is a pod named *webserver*, and the container within it is named *httpd-container*, its utilizing the *httpd:latest* image
 
-#### Additionally, there's a sidecar container named sidecar-container using the ubuntu:latest image
+ - Additionally, there's a sidecar container named *sidecar-container* using the *ubuntu:latest* image
 
-#### Identify and address the issue to ensure the pod is in the running state and the application is accessible
+ - Identify and address the issue to ensure the pod is running and the application is accessible
 
-**Solution**
+## Solution:
 
-#### Check the pods running
+Check if the pods running.
 
-thor@jumphost ~$ kubectl get pods
+```
+kubectl get pods
 NAME        READY   STATUS             RESTARTS   AGE
 webserver   1/2     ImagePullBackOff   0          89s
+```
 
-#### Here we can see the pod is not running Status was ImagePullBackOff. There are two possiblities
+ Here we can see the pod is not running Status was ImagePullBackOff. There are two possibilities
 
-#### 1. Wrong image name
+ 1. Wrong image name
 
-#### 2. image was not present
+ 2. The image was not present
 
-#### Now we should see the complete details of pod wedserver
+ Now we should see the complete details of pod webserver
 
 ```json
 thor@jumphost ~$ kubectl describe pod webserver 
@@ -107,14 +109,14 @@ Events:
   Warning  Failed     18s (x6 over 99s)   kubelet            Error: ImagePullBackOff
 ```
 
-#### We can clearly in the log that image name was specified wrong **httpd:latests** insted of **httpd:latest**. We should edit the pod and modify the image name
+ We can clearly in the log that image name was specified wrong httpd:latests insted of httpd:latest. We should edit the pod and modify the image name
 
 ```bash
 thor@jumphost ~$ kubectl edit pod webserver
 pod/webserver edited
 ```
 
-#### Check the pod is running or not
+ Check whether the pod is running or not.
 
 ```bash
 thor@jumphost ~$ kubectl get pod

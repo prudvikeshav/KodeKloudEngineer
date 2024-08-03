@@ -1,16 +1,16 @@
-# **Problem Statement:**
+## Problem Statement:
 
 There is a production deployment planned for next week. The Nautilus DevOps team wants to test the deployment update and rollback on Dev environment first so that they can identify the risks in advance. Below you can find more details about the plan they want to execute.
 
-- Create a namespace datacenter. Create a deployment called httpd-deploy under this new namespace, It should have one container called httpd, use httpd:2.4.28 image and 2 replicas. The deployment should use RollingUpdate strategy with maxSurge=1, and maxUnavailable=2. Also create a NodePort type service named httpd-service and expose the deployment on nodePort: 30008.
+- Create a namespace *datacenter*. Create a deployment called *httpd-deploy* under this new namespace, It should have one container called *httpd*, use *httpd:2.4.28* image and *2* replicas. The deployment should use *RollingUpdate* strategy with *maxSurge=1*, and *maxUnavailable=2*. Also create a NodePort type service named *httpd-service* and expose the deployment on *nodePort: 30008*.
 
-- Now upgrade the deployment to version httpd:2.4.43 using a rolling update.
+- Now upgrade the deployment to version *httpd:2.4.43* using a rolling update.
 
 - Finally, once all pods are updated undo the recent update and roll back to the previous/original version.
 
-# **Solution:**
+## Solution:
 
-We need to create a namespace datacenter
+We need to create a namespace datacenter.
 
 ```bash
 kubectl create namespace datacenter
@@ -20,7 +20,7 @@ kubectl create namespace datacenter
 namespace/datacenter created
 ```
 
-We can change our context from default namespace to newly created namespace datacenter
+We can change our context from default namespace to newly created namespace datacenter.
 
 ```bash
 kubectl config set-context --current --namespace=datacenter
@@ -30,7 +30,7 @@ kubectl config set-context --current --namespace=datacenter
 Context "kind-kodekloud" modified.
 ```
 
-We need to create a deployment named http-deploy with the given above requirements
+We need to create a deployment named http-deploy with the given above requirements.
 
 ```
 kubectl create deployment httpd-deploy --namespace=datacenter --image=httpd:2.4.28 --replicas=2 --dry-run=client -o yaml
@@ -66,7 +66,7 @@ spec:
 status: {}
 ```
 
-Now we need to create an Nodeport service.
+Now we need to create a Nodeport service.
 
 ```yaml
 apiVersion: v1

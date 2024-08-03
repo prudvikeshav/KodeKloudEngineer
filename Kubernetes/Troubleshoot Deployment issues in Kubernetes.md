@@ -1,12 +1,12 @@
-# **Problem Statement**
+## Problem Statement:
 
-Last week, the Nautilus DevOps team deployed a redis app on Kubernetes cluster, which was working fine so far. This morning one of the team members was making some changes in this existing setup, but he made some mistakes and the app went down. We need to fix this as soon as possible. Please take a look.
+Last week, the Nautilus DevOps team deployed a Redis app on the Kubernetes cluster, which has been working fine so far. This morning one of the team members was making some changes to this existing setup, but he made some mistakes and the app went down. We need to fix this as soon as possible. Please take a look.
 
-T- he deployment name is redis-deployment. The pods are not in running state right now, so please look into the issue and fix the same.
+- The deployment name is *redis-deployment*. The pods are not running right now, so please look into the issue and fix the same.
 
-# **Solution**
+# Solution
 
-First check the pods that are present
+First, we shall check the pods that are running.
 
 ```
 kubectl get pods
@@ -17,7 +17,7 @@ NAME                                READY   STATUS              RESTARTS   AGE
 redis-deployment-54cdf4f76d-lvj2m   0/1     ContainerCreating   0          52s
 ```
 
-As we know a redis deployment has been deployed before and we need to check why it is failing so we need to describe deployment to check configuration of the deployment
+As we know a redis-deployment has been deployed before and we need to check why it is failing so we need to describe the deployment to check the configuration of the deployment.
 
 ```
 kubectl describe deployments.apps redis-deployment 
@@ -71,7 +71,7 @@ Events:
   Normal  ScalingReplicaSet  98s   deployment-controller  Scaled up replica set redis-deployment-54cdf4f76d to 1
 ```
 
-From the describe of the deployment we can see the wrong image name was specified. that needs to be updated. In order find all errors we can check on events.
+From the description of the deployment, we can see the wrong image name was specified. That needs to be updated. To find all errors we can check on events.
 
 ```
 kubectl get  events
@@ -95,4 +95,4 @@ LAST SEEN   TYPE      REASON                    OBJECT                          
 7m43s       Normal    ScalingReplicaSet         deployment/redis-deployment              Scaled up replica set redis-deployment-54cdf4f76d to 1
 ```
 
-Now we can also observe the configMap name was specified wrong. its also be updated.
+Now we can also observe the configMap name was specified wrong. It also be updated.

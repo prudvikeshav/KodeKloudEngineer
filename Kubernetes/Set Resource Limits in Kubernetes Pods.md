@@ -1,16 +1,16 @@
-### Problem Statement
+## Problem Statement:
 
-#### The Nautilus DevOps team has noticed performance issues in some Kubernetes-hosted applications due to resource constraints. To address this, they plan to set limits on resource utilization. Here are the details
+ The Nautilus DevOps team has noticed performance issues in some Kubernetes-hosted applications due to resource constraints. To address this, they plan to set limits on resource utilization. Here are the details
 
-#### Create a pod named httpd-pod with a container named httpd-container. Use the httpd image with the latest tag (specify as httpd:latest). Set the following resource limits
+ Create a pod named *httpd-pod* with a container named *httpd-container*. Use the *httpd* image with the latest tag (specify as httpd:latest). Set the following resource limits
 
-#### Requests: Memory: 15Mi, CPU: 100m
+ Requests: Memory: *15Mi*, CPU: *100m*
 
-#### Limits: Memory: 20Mi, CPU: 100m
+ Limits: Memory: *20Mi*, CPU: *100m*
 
-### Solution
+## Solution:
 
-#### Creating a pod with resource limits
+ Creating a pod with resource limits.
 
 ```yaml
 apiVersion: v1
@@ -33,7 +33,7 @@ spec:
 status: {}
 ```
 
-#### Check the pod created
+ Check the pod created.
 
 ```bash
 kubectl get  pods

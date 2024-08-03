@@ -1,18 +1,18 @@
-**Problem Statement**
+## Problem Statement
 
-#### The Nautilus DevOps team is working to deploy some tools in Kubernetes cluster. Some of the tools are licence based so that licence information needs to be stored securely within Kubernetes cluster. Therefore, the team wants to utilize Kubernetes secrets to store those secrets. Below you can find more details about the requirements
+ The Nautilus DevOps team is working to deploy some tools in Kubernetes cluster. Some of the tools are licence based so that licence information needs to be stored securely within Kubernetes cluster. Therefore, the team wants to utilize Kubernetes secrets to store those secrets. Below you can find more details about the requirements
 
-- #### We already have a secret key file official.txt under /opt location on jump host. Create a generic secret named official, it should contain the password/license-number present in official.txt file
+-  We already have a secret key file *official.txt* under */opt* location on jump host. Create a generic secret named *official*, it should contain the password/license-number present in *official.txt* file
 
-- #### Also create a pod named secret-devops
+-  Also create a pod named *secret-devops*
 
-- #### Configure pod's spec as container name should be secret-container-devops, image should be centos preferably with latest tag (remember to mention the tag with image). Use sleep command for container so that it remains in running state. Consume the created secret and mount it under /opt/demo within the container
+-  Configure pod's spec as container name should be *secret-container-devops*, image should be centos preferably with latest tag (remember to mention the tag with image). Use *sleep* command for container so that it remains in running state. Consume the created secret and mount it under */opt/demo* within the container
 
-- #### To verify you can exec into the container secret-container-devops, to check the secret key under the mounted path /opt/demo. Before hitting the Check button please make sure pod/pods are in running state, also validation can take some time to complete so keep patience
+-  To verify you can exec into the container *secret-container-devops*, to check the secret key under the mounted path */opt/demo*. Before hitting the Check button please make sure pod/pods are in running state, also validation can take some time to complete so keep patience
 
-**Solution:**
+## Solution:
 
-#### Create a secret with the file
+ Create a secret with the file.
 
 ```bash
 kubectl create secret generic official --from-file=password=/opt/official.txt
@@ -22,7 +22,7 @@ kubectl create secret generic official --from-file=password=/opt/official.txt
 secret/official created
 ```
 
-#### Now we need to create an pod with image *centos:latest* and secret should be mount on /opt/demo in container
+ Now we need to create an pod with image *centos:latest* and secret should be mount on */opt/demo* in container.
 
 ```yaml
 apiVersion: v1
@@ -47,7 +47,7 @@ spec:
        secretName: official
 ```
 
-#### Apply the pod file
+ Apply to the pod file
 
 ```bash
 kubectl apply -f pod.yaml
@@ -57,7 +57,7 @@ kubectl apply -f pod.yaml
 pod/secret-devops created
 ```
 
-#### We need to check if the secret mounted on the container in */opt/demo* location
+ We need to check if the secret mounted on the container in */opt/demo* location.
 
 ```bash
 kubectl exec -it secret-devops sh
