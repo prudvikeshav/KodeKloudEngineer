@@ -1,16 +1,16 @@
-**Problem Statement**
+## Problem Statement:
 
-#### The Nautilus DevOps team is gearing up to deploy applications on a Kubernetes cluster for migration purposes. A team member has been tasked with creating a ReplicaSet outlined below
+ The Nautilus DevOps team is gearing up to deploy applications on a Kubernetes cluster for migration purposes. A team member has been tasked with creating a ReplicaSet outlined below
 
-#### Create a ReplicaSet using nginx image with latest tag (ensure to specify as nginx:latest) and name it nginx-replicaset
+ Create a ReplicaSet using *nginx* image with latest tag (ensure to specify as nginx:latest) and name it *nginx-replicaset*
 
-#### Apply labels: app as nginx_app, type as front-end
+ Apply labels: *app* as *nginx_app*, *type* as *front-end*
 
-#### Name the container nginx-container. Ensure the replica count is 4
+ Name the container *nginx-container*. Ensure the replica count is *4*
 
-**Solution**
+## Solution:
 
-#### Create a replicaset with the given details
+ Create a replicaset with the given details:
 
 ```yaml
 apiVersion: apps/v1
@@ -38,7 +38,7 @@ spec:
         image: nginx:latest
 ```
 
-#### Check the replica set running or not
+ Check whether the replica set running or not.
 
 ```bash
 thor@jumphost ~$ kubectl get replicasets.apps 

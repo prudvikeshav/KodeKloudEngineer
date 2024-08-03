@@ -1,36 +1,36 @@
-# **Problem Statement:**
+ ## Problem Statement:
 There are a number of parameters that are used by the applications. We need to define these as environment variables, so that we can use them as needed within different configs. Below is a scenario which needs to be configured on Kubernetes cluster. Please find below more details about the same.
 
 
-- Create a pod named envars.
+- Create a pod named *envars*.
 
-- Container name should be fieldref-container, use image busybox preferable latest tag, use command 'sh', '-c' and args should be
+- Container name should be *fieldref-container*, use image *busybox* preferable latest tag, use command *'sh'*, *'-c'* and args should be
 
-'while true; do
+*'while true; do
       echo -en '/n';
                                   printenv NODE_NAME POD_NAME;
                                   printenv POD_IP POD_SERVICE_ACCOUNT;
               sleep 10;
-         done;'
+         done;'*
 
 (Note: please take care of indentations)
 
 - Define Four environment variables as mentioned below:
-    a.) The first env should be named as NODE_NAME, set valueFrom fieldref and fieldPath should be spec.nodeName.
+    a.) The first env should be named as NODE_NAME, set valueFrom fieldref and fieldPath should be *spec.nodeName*.
 
-    b.) The second env should be named as POD_NAME, set valueFrom fieldref and fieldPath should be metadata.name.
+    b.) The second env should be named as POD_NAME, set valueFrom fieldref and fieldPath should be *metadata.name*.
 
-    c.) The third env should be named as POD_IP, set valueFrom fieldref and fieldPath should be status.podIP.
+    c.) The third env should be named as POD_IP, set valueFrom fieldref and fieldPath should be *status.podIP*.
 
-    d.) The fourth env should be named as POD_SERVICE_ACCOUNT, set valueFrom fieldref and fieldPath shoulbe be spec.serviceAccountName.
+    d.) The fourth env should be named as POD_SERVICE_ACCOUNT, set valueFrom fieldref and fieldPath shoulbe be *spec.serviceAccountName*.
 
-- Set restart policy to Never.
+- Set restart policy to *Never*.
 
-- To check the output, exec into the pod and use printenv command.
+- To check the output, exec into the pod and use *printenv* command.
 
-# **Solution:**
+ ## Solution:
 
-The pod yaml for the given requirements
+The pod yaml for the given requirements:
 
 ```yaml
 apiVersion: v1
@@ -71,20 +71,20 @@ spec:
               fieldPath: spec.serviceAccountName
   restartPolicy: Never
 ```
-To check the pod created
+To check the pod created.
 ```
 kubectl get pods
 NAME     READY   STATUS    RESTARTS   AGE
 envars   1/1     Running   0          6s
 ```
-Now we need to check the envronment variables in the pod by executing printenv inside the container
+Now we need to check the environment variables in the pod by executing printenv inside the container.
 ```
 kubectl exec -it envars sh
 ```
-Output
+Output:
 
 ```
-/ # printenv
+/  printenv
 POD_IP=10.244.0.5
 KUBERNETES_SERVICE_PORT=443
 KUBERNETES_PORT=tcp://10.96.0.1:443

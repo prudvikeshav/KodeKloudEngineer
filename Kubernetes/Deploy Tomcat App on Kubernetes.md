@@ -1,4 +1,4 @@
-# **Problem Statement:**
+ Problem Statement:
 
 A new java-based application is ready to be deployed on a Kubernetes cluster. The development team had a meeting with the DevOps team to share the requirements and application scope. The team is ready to setup an application stack for it under their existing cluster. Below you can find the details for this:
 
@@ -8,7 +8,7 @@ A new java-based application is ready to be deployed on a Kubernetes cluster. Th
 
 - Create a service for tomcat app which should be named as tomcat-service-nautilus under the same namespace you created. Service type should be NodePort and nodePort should be 32227.
 
-# **Solution:**
+ Solution:
 
 To create a namespace tomcat-namespace-nautilus
 

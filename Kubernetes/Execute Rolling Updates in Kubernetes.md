@@ -1,32 +1,36 @@
-**Problem Statement**
+## Problem Statement
 
-#### An application currently running on the Kubernetes cluster employs the nginx web server. The Nautilus application development team has introduced some recent changes that need deployment. They've crafted an image nginx:1.18 with the latest updates
+ An application currently running on the Kubernetes cluster employs the nginx web server. The Nautilus application development team has introduced some recent changes that need deployment. They've crafted an image nginx:1.18 with the latest updates
 
-#### Execute a rolling update for this application, integrating the nginx:1.18 image. The deployment is named nginx-deployment
+ Execute a rolling update for this application, integrating the *nginx:1.18* image. The deployment is named *nginx-deployment*
 
-#### Ensure all pods are operational post-update
+ Ensure all pods are operational post-update
 
-**Solution**
+Solution
 
-#### Check the pods Running
+ Check the pods Running.
 
 ```bash
-thor@jumphost ~$ kubectl get pods
+kubectl get pods
+```
+```
 NAME                               READY   STATUS    RESTARTS   AGE
 nginx-deployment-989f57c54-dnxjs   1/1     Running   0          53s
 nginx-deployment-989f57c54-fjvdw   1/1     Running   0          53s
 nginx-deployment-989f57c54-zsfs6   1/1     Running   0          53s
 ```
 
-#### Check the deplopyment
+Check the deployment.
 
 ```bash
-thor@jumphost ~$ kubectl get deployments.apps 
+kubectl get deployments.apps 
+```
+```
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           61s
 ```
 
-#### Verify the deployment to see which image was deployed
+ Verify the deployment to see which image was deployed and strategy type.
 
 ```bash
 thor@jumphost ~$ kubectl describe deployments.apps nginx-deployment 
@@ -66,16 +70,16 @@ Events:
   Normal  ScalingReplicaSet  86s   deployment-controller  Scaled up replica set nginx-deployment-989f57c54 to 3
 ```
 
-#### We can see image nginx:1.16 was deployed and Strategy was Rolling update
+ We can see image nginx:1.16 was deployed and Strategy was Rolling update.
 
-#### Now we need to update the image from nginx:1.16 to nginx:1.18
+ Now we need to update the image from nginx:1.16 to nginx:1.18.
 
 ```bash
 kubectl set image deployments/nginx-deployment nginx-container=nginx:1.18
 deployment.apps/nginx-deployment image updated
 ```
 
-#### To check the Rollout was successful or not
+ To check whether the Rollout was successful or not.
 
 ```bash
 kubectl rollout status deployments/nginx-deployment 
