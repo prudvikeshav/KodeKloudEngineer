@@ -1,16 +1,16 @@
-# **Problem Statement: **
+## Problem Statement: 
 The Nautilus DevOps team want to deploy a static website on Kubernetes cluster. They are going to use Nginx, phpfpm and MySQL for the database. The team had already gathered the requirements and now they want to make this website live. Below you can find more details:
 
 
 
 - Create some secrets for MySQL.
 
-- Create a secret named mysql-root-pass wih key/value pairs as below:
+- Create a secret named *mysql-root-pass* wih key/value pairs as below:
     ```
      name: password
      value: R00t
     ```
-- Create a secret named mysql-user-pass with key/value pairs as below:
+- Create a secret named *mysql-user-pass* with key/value pairs as below:
     ```
      name: username
      value: kodekloud_cap
@@ -19,19 +19,19 @@ The Nautilus DevOps team want to deploy a static website on Kubernetes cluster. 
      name: password
      value: ksH85UJjhb
     ```
-- Create a secret named mysql-db-url with key/value pairs as below:
+- Create a secret named *mysql-db-url* with key/value pairs as below:
     ```
      name: database
      value: kodekloud_db8
     ```
-- Create a secret named mysql-host with key/value pairs as below:
+- Create a secret named *mysql-host* with key/value pairs as below:
     ```
      name: host
      value: mysql-service
     ```
-- Create a config map php-config for php.ini with variables_order = "EGPCS" data.
-- Create a deployment named lemp-wp.
-- Create two containers under it. First container must be nginx-php-container using image webdevops/php-nginx:alpine-3-php7 and second container must be mysql-container from image mysql:5.6. Mount php-config configmap in nginx container at /opt/docker/etc/php/php.ini location.
+- Create a config map *php-config* for php.ini with variables_order = *"EGPCS"* data.
+- Create a deployment named *lemp-wp*.
+- Create two containers under it. First container must be *nginx-php-container* using image *webdevops/php-nginx:alpine-3-php7* and second container must be *mysql-container* from image *mysql:5.6*. Mount *php-config* configmap in nginx container at */opt/docker/etc/php/php.ini* location.
 
 
 - Add some environment variables for both containers:
@@ -39,23 +39,23 @@ The Nautilus DevOps team want to deploy a static website on Kubernetes cluster. 
 
      - MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD and MYSQL_HOST. Take their values from the secrets you created. Please make sure to use env field (do not use envFrom) to define the name-value pair of environment variables.
 
-- Create a node port type service lemp-service to expose the web application, nodePort must be 30008.
+- Create a node port type service *lemp-service* to expose the web application, nodePort must be *30008*.
 
 
-- Create a service for mysql named mysql-service and its port must be 3306.
+- Create a service for mysql named *mysql-service* and its port must be *3306*.
 
 
-- We already have a /tmp/index.php file on jump_host server.
+- We already have a */tmp/index.php* file on jump_host server.
 
 
-     - Copy this file into the nginx container under document root i.e /app and replace the dummy values for mysql related variables with the environment variables you have set for mysql related parameters. Please make sure you do not hard code the mysql related details in this file, you must use the environment variables to fetch those values.
+     - Copy this file into the nginx container under document root i.e */app *and replace the dummy values for mysql related variables with the environment variables you have set for mysql related parameters. Please make sure you do not hard code the mysql related details in this file, you must use the environment variables to fetch those values.
 
 
-     - Once done, you must be able to access this website using Website button on the top bar, please note that you should see Connected successfully message while accessing this page.
+     - Once done, you must be able to access this website using *Website* button on the top bar, please note that you should see Connected successfully message while accessing this page.
 
-# **Solution:**
+## Solution:
 
-First we need to create kubernetes generic secrets for mysql related values.
+First, we need to create Kubernetes generic secrets for MySQL-related values.
 
 ```bash
 kubectl create secret generic mysql-root-pass --from-literal=password=R00t
@@ -164,7 +164,7 @@ spec:
         configMap:
           name: php-config
 ```
-A service nodeport service to be created for expose the website and a mysql service required to connect to database.
+A service node port service is to be created to expose the website and a MySQL service is required to connect to the database.
 
 ```yaml
 apiVersion: v1
@@ -203,8 +203,8 @@ kubectl cp /tmp/index.php lemp-wp-7c9cfc699c-kvfhd:/app
 ```
 Defaulted container "httpd-php-container" out of: httpd-php-container, mysql-container
 ```
-The copy was successful we need to check wheather the webiste working on clicking on website button.
-we can see the website hasnt connected. its because the dummy values are present in index.php. we need to update them.
+The copy was successful we need to check whether the website working by clicking on the website button.
+we can see the website hasn't connected. It's because the dummy values are present in index.php. we need to update them.
 
 Replace the dummy values with the below
 ```
@@ -213,4 +213,4 @@ $dbuser = $_ENV["MYSQL_USER"];
 $dbpass = $_ENV["MYSQL_PASSWORD"];
 $dbhost = $_ENV["MYSQL_HOST"];
 ```
-After replacing we can connect to the website.
+After replacing we can connect to the website button.

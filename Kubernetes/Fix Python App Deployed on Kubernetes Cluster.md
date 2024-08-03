@@ -1,13 +1,14 @@
-**Problem Ststement**
+## Problem Statement:
 One of the DevOps engineers was trying to deploy a python app on Kubernetes cluster. Unfortunately, due to some mis-configuration, the application is not coming up. Please take a look into it and fix the issues. Application should be accessible on the specified nodePort.
 
 
 
-- The deployment name is python-deployment-nautilus, its using poroko/flask-demo-appimage. The deployment and service of this app is already deployed.
+- The deployment name is *python-deployment-nautilus*, its using *poroko/flask-demo-app* image. The deployment and service of this app is already deployed.
 
-- nodePort should be 32345 and targetPort should be python flask app's default port.
+- nodePort should be *32345* and targetPort should be python flask app's default port.
 
-# **Solution:**
+## Solution:
+First, we shall check deployment details to find any errors.
 ```
 kubectl describe deployments.apps python-deployment-datacenter 
 ```
@@ -46,15 +47,18 @@ Events:
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  40s   deployment-controller  Scaled up replica set python-deployment-datacenter-6fdb496d59 to 1
 ```
-After watching the deployment we can see the image name specified wrong. we need to updated it.
+After watching the deployment we can see the image name specified wrong. we need to update it.
 ```
 kubectl edit deployments.apps python-deployment-datacenter 
 deployment.apps/python-deployment-datacenter edited
 ```
+View the service.
 ```
 kubectl get svc
-Output
 ```
+Output:
+```
+
 NAME                        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 kubernetes                  ClusterIP   10.96.0.1      <none>        443/TCP          123m
 python-service-datacenter   NodePort    10.96.83.237   <none>        8080:32345/TCP   2m9s
@@ -64,4 +68,4 @@ Now we can see that container port was 5000 and nodeport port was 8080. we need 
 kubectl edit svc python-service-datacenter 
 service/python-service-datacenter edited
 ```
-Click on the app to check its working or not
+Click on the *app* to check its working or not
