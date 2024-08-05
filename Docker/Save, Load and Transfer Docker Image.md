@@ -1,48 +1,71 @@
+
 ## Problem Statement
 
- One of the DevOps team members was working on to create a new custom docker image on App Server 1 in Stratos DC. He is done with his changes and image is saved on same server with name cluster:devops. Recently a requirement has been raised by a team to use that image for testing, but the team wants to test the same on App Server 3. So we need to provide them that image on App Server 3 in Stratos DC.
+One of the DevOps team members has created a custom Docker image named `cluster:devops` on App Server 1 in the Stratos Datacenter. The image is now saved on this server. A new requirement has been raised to use this image for testing on App Server 3. The task is to:
 
-- On App Server 1 save the image *cluster:devops* in an archive.
+1. Save the `cluster:devops` image as an archive on App Server 1.
+2. Transfer the image archive to App Server 3.
+3. Load the image archive on App Server 3 with the same name and tag.
 
-- Transfer the image archive to App Server 3.
-
-- Load that image archive on App Server 3 with same name and tag which was used on App Server 1.
-
- Note: Docker is already installed on both servers; however, if its service is down please make sure to start it.
+**Note:** Docker is already installed on both servers. If the Docker service is down, ensure it is started.
 
 ## Solution
 
- Login into appserver1 and check for images
+### 1. Save the Docker Image on App Server 1
 
-```bash
-[root@stapp01 tony] docker image list
-REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
-cluster      devops    d5dc2018d4da   4 minutes ago   116MB
-ubuntu       latest    35a88802559d   4 weeks ago     78MB
-```
+- **Log in to App Server 1** and check the existing Docker images to confirm the presence of the `cluster:devops` image.
 
- Save the docker image into tar file.
+  ```bash
+  docker image list
+  ```
 
-```bash
- docker image save cluster:devops -o cluster.tar
- ```
+  Expected output:
 
- Copy the tar file to App server3.
+  ```
+  REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+  cluster      devops    d5dc2018d4da   4 minutes ago   116MB
+  ubuntu       latest    35a88802559d   4 weeks ago     78MB
+  ```
 
- ```bash
- scp /home/tony/cluster.tar banner@stapp03:/tmp
- ```
+- **Save the Docker image** to a tar file. This command creates a tarball of the image that can be transferred to another server.
 
- Load the image.
+  ```bash
+  docker image save cluster:devops -o cluster.tar
+  ```
 
- ```bash
-  docker image load -i /tmp/cluster.tar 
- ```
+  This will create a file named `cluster.tar` containing the `cluster:devops` Docker image.
 
- Output:
+### 2. Transfer the Image Archive to App Server 3
 
-```bash
-[root@stapp03 banner] docker image list
-REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
-cluster      devops    d5dc2018d4da   8 minutes ago   116MB
-```
+- **Copy the tar file** to App Server 3 using SCP (Secure Copy Protocol). Ensure you have appropriate permissions to access `/tmp` on App Server 3.
+
+  ```bash
+  scp /home/tony/cluster.tar banner@stapp03:/tmp
+  ```
+
+  Here, `/home/tony/cluster.tar` is the path to the tar file on App Server 1, and `/tmp` is the destination path on App Server 3.
+
+### 3. Load the Docker Image on App Server 3
+
+- **Log in to App Server 3** and load the Docker image from the tar file into Docker.
+
+  ```bash
+  docker image load -i /tmp/cluster.tar
+  ```
+
+  This command imports the image from the tar file into Docker, making it available for use on App Server 3.
+
+- **Verify the image** on App Server 3 to ensure it has been loaded correctly.
+
+  ```bash
+  docker image list
+  ```
+
+  Expected output:
+
+  ```
+  REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+  cluster      devops    d5dc2018d4da   8 minutes ago   116MB
+  ```
+
+  The output should show the `cluster:devops` image with the same tag and ID as on App Server 1.
