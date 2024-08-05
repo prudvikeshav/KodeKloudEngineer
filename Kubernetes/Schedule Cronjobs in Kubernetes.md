@@ -4,7 +4,7 @@
 
 -  Create a cronjob named *datacenter*
 
--  Set Its schedule to something like "**/10* **". You can set any schedule for now
+-  Set Its schedule to something like "*/10 * *" You can set any schedule for now
 
 -   Name the container *cron-datacenter*
 
