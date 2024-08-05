@@ -63,3 +63,16 @@ Expected Output:
 NAME               COMPLETIONS   DURATION   AGE
 countdown-devops   0/1           9s         9s
 ```
+
+4. Check Job Details and Logs
+To get detailed information about the Job, including status and events, use:
+
+```bash
+kubectl describe job countdown-devops
+```
+
+To view logs for the Job's pod (helpful for debugging), first, get the pod name:
+
+```bash
+kubectl get pods --selector=job-name=countdown-devops
+```
