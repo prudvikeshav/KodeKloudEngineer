@@ -6,8 +6,13 @@ Some of the Nautilus team developers are developing a static website and they wa
 
 - Create a NodePort type service named *nginx-service*. The nodePort should be *30011*.
 
-## Solution:
-Manifest file for Nginx deployment.
+## Solution
+
+## 1. Create the Deployment
+
+The Deployment will use the nginx:latest image, with 3 replicas for high availability.
+
+File: `nginx-deployment.yaml`
 
 ```yaml
 apiVersion: apps/v1

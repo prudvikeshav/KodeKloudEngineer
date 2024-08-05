@@ -10,73 +10,120 @@ A new java-based application is ready to be deployed on a Kubernetes cluster. Th
 
  Solution:
 
-To create a namespace tomcat-namespace-nautilus
+Here's a detailed solution for setting up a Tomcat application in a Kubernetes cluster, following the provided requirements:
 
-```
+## **Solution**
+
+### **1. Create the Namespace**
+
+First, create a namespace to organize the resources:
+
+```bash
 kubectl create namespace tomcat-namespace-nautilus
 ```
 
-```
-namespace/tomcat-namespace-nautilus created
-```
+### **2. Create the Deployment**
 
-We need to create a deployment with the given requirements
+Next, create a deployment named `tomcat-deployment-nautilus` within the `tomcat-namespace-nautilus` namespace. This deployment will manage a single replica of a container running Tomcat.
 
-```
-kubectl create deployment tomcat-deployment-nautilus --namespace=tomcat-namespace-nautilus --replicas=1 --image=gcr.io/kodekloud/centos-ssh-enabled:tomcat --port=8080 --dry-run=client -o yaml
-```
+Save the following YAML configuration to a file named `tomcat-deployment.yaml`:
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: tomcat-deployment-nautilus
   name: tomcat-deployment-nautilus
   namespace: tomcat-namespace-nautilus
+  labels:
+    app: tomcat-deployment-nautilus
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: tomcat-deployment-nautilus
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: tomcat-deployment-nautilus
     spec:
       containers:
-      - image: gcr.io/kodekloud/centos-ssh-enabled:tomcat
-        name: tomcat-container-nautilus
+      - name: tomcat-container-nautilus
+        image: gcr.io/kodekloud/centos-ssh-enabled:tomcat
         ports:
         - containerPort: 8080
         resources: {}
-status: {}
 ```
 
-We need to create a nodeport service for the deployment
+Apply this configuration:
+
+```bash
+kubectl apply -f tomcat-deployment.yaml
+```
+
+### **3. Create the Service**
+
+Create a service named `tomcat-service-nautilus` to expose the Tomcat application. This service will use the NodePort type and will expose the application on port 32227.
+
+Save the following YAML configuration to a file named `tomcat-service.yaml`:
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
-  labels:
-    app: tomcat-deployment-nautilus
   name: tomcat-service-nautilus
   namespace: tomcat-namespace-nautilus
+  labels:
+    app: tomcat-deployment-nautilus
 spec:
   ports:
   - name: tomcat-service-nautilus
-    nodePort: 32227
     port: 8080
-    protocol: TCP
     targetPort: 8080
+    nodePort: 32227
+    protocol: TCP
   selector:
     app: tomcat-deployment-nautilus
   type: NodePort
-status:
-  loadBalancer: {}
 ```
+
+Apply this configuration:
+
+```bash
+kubectl apply -f tomcat-service.yaml
+```
+
+### **4. Verify the Deployment and Service**
+
+To ensure that everything is set up correctly, check the status of the deployment and service:
+
+**Check Deployment:**
+
+```bash
+kubectl get deployments -n tomcat-namespace-nautilus
+```
+
+You should see `tomcat-deployment-nautilus` listed with 1 replica.
+
+**Check Pods:**
+
+```bash
+kubectl get pods -n tomcat-namespace-nautilus
+```
+
+You should see a Pod created by the deployment with a status of `Running`.
+
+**Check Service:**
+
+```bash
+kubectl get services -n tomcat-namespace-nautilus
+```
+
+You should see `tomcat-service-nautilus` listed with port `32227`.
+
+### **Summary**
+
+- **Namespace**: Created `tomcat-namespace-nautilus`.
+- **Deployment**: Deployed `tomcat-deployment-nautilus` with 1 replica, using the `gcr.io/kodekloud/centos-ssh-enabled:tomcat` image, exposing port `8080`.
+- **Service**: Created `tomcat-service-nautilus` to expose the deployment with a NodePort of `32227`.
+
+This setup ensures that your Tomcat application is correctly deployed and accessible via the specified NodePort.

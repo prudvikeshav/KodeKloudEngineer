@@ -1,71 +1,140 @@
-## Problem Statement:
+## Problem Statement
+
 One of the DevOps engineers was trying to deploy a python app on Kubernetes cluster. Unfortunately, due to some mis-configuration, the application is not coming up. Please take a look into it and fix the issues. Application should be accessible on the specified nodePort.
-
-
 
 - The deployment name is *python-deployment-nautilus*, its using *poroko/flask-demo-app* image. The deployment and service of this app is already deployed.
 
 - nodePort should be *32345* and targetPort should be python flask app's default port.
 
-## Solution:
-First, we shall check deployment details to find any errors.
-```
-kubectl describe deployments.apps python-deployment-datacenter 
-```
-```
-Name:                   python-deployment-datacenter
-Namespace:              default
-CreationTimestamp:      Thu, 01 Aug 2024 02:31:13 +0000
-Labels:                 <none>
-Annotations:            deployment.kubernetes.io/revision: 1
-Selector:               app=python_app
-Replicas:               1 desired | 1 updated | 1 total | 0 available | 1 unavailable
-StrategyType:           RollingUpdate
-MinReadySeconds:        0
-RollingUpdateStrategy:  25% max unavailable, 25% max surge
-Pod Template:
-  Labels:  app=python_app
-  Containers:
-   python-container-datacenter:
-    Image:         poroko/flask-app-demo
-    Port:          5000/TCP
-    Host Port:     0/TCP
-    Environment:   <none>
-    Mounts:        <none>
-  Volumes:         <none>
-  Node-Selectors:  <none>
-  Tolerations:     <none>
-Conditions:
-  Type           Status  Reason
-  ----           ------  ------
-  Available      False   MinimumReplicasUnavailable
-  Progressing    True    ReplicaSetUpdated
-OldReplicaSets:  <none>
-NewReplicaSet:   python-deployment-datacenter-6fdb496d59 (1/1 replicas created)
-Events:
-  Type    Reason             Age   From                   Message
-  ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  40s   deployment-controller  Scaled up replica set python-deployment-datacenter-6fdb496d59 to 1
-```
-After watching the deployment we can see the image name specified wrong. we need to update it.
-```
-kubectl edit deployments.apps python-deployment-datacenter 
-deployment.apps/python-deployment-datacenter edited
-```
-View the service.
-```
-kubectl get svc
-```
-Output:
+To resolve the issue with the Python application deployment on the Kubernetes cluster, follow these steps to fix the configuration problems:
+
+## **Solution**
+
+### **1. Check Deployment Details**
+
+First, let's review the deployment details to identify any issues:
+
+```bash
+kubectl describe deployments.apps python-deployment-datacenter
 ```
 
-NAME                        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-kubernetes                  ClusterIP   10.96.0.1      <none>        443/TCP          123m
-python-service-datacenter   NodePort    10.96.83.237   <none>        8080:32345/TCP   2m9s
+**Issues Observed:**
+
+- **Image Name**: The image name is incorrectly specified.
+- **Replica Availability**: The deployment shows `0 available` pods, which indicates there might be an issue with the pods not being ready.
+
+### **2. Correct the Deployment Configuration**
+
+If the image name is incorrect, you need to update it. Based on the provided details, it looks like you need to correct the image name in the deployment configuration. The correct image name should be `poroko/flask-demo-app`.
+
+To edit the deployment:
+
+```bash
+kubectl edit deployments.apps python-deployment-datacenter
 ```
-Now we can see that container port was 5000 and nodeport port was 8080. we need to updated it also.
+
+Change the image name in the container specification to `poroko/flask-demo-app` and save the changes.
+
+**Example Correction:**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment-datacenter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python_app
+  template:
+    metadata:
+      labels:
+        app: python_app
+    spec:
+      containers:
+      - name: python-container-datacenter
+        image: poroko/flask-demo-app  # Corrected image name
+        ports:
+        - containerPort: 5000         # Flask default port
 ```
-kubectl edit svc python-service-datacenter 
-service/python-service-datacenter edited
+
+### **3. Update the Service Configuration**
+
+Next, ensure that the service is correctly configured to match the container's port and the specified NodePort. You observed that the container port is `5000` and the NodePort should be `32345`.
+
+To update the service configuration:
+
+```bash
+kubectl edit svc python-service-datacenter
 ```
-Click on the *app* to check its working or not
+
+Update the `port` and `nodePort` to reflect these values.
+
+**Example Correction:**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service-datacenter
+spec:
+  type: NodePort
+  selector:
+    app: python_app
+  ports:
+  - protocol: TCP
+    port: 5000        # Container port
+    targetPort: 5000  # Forward to container port
+    nodePort: 32345   # NodePort
+```
+
+### **4. Verify the Changes**
+
+After making these updates, ensure that the changes have been applied and that the deployment is running correctly:
+
+1. **Check Deployment Status:**
+
+    ```bash
+    kubectl get deployments.apps
+    ```
+
+    Confirm that the deployment has 1 replica available.
+
+2. **Check Pods Status:**
+
+    ```bash
+    kubectl get pods
+    ```
+
+    Ensure that the pod is running and ready.
+
+3. **Check Services Status:**
+
+    ```bash
+    kubectl get svc
+    ```
+
+    Confirm that the `python-service-datacenter` service is correctly configured with the NodePort `32345` and the correct target port.
+
+### **5. Access the Application**
+
+Once you confirm that the deployment and service are correctly configured, access the application using the NodePort. Replace `<NodeIP>` with the IP address of your node:
+
+```bash
+http://<NodeIP>:32345
+```
+
+Check if the application is accessible and functioning as expected.
+
+### **6. Verify Application Logs**
+
+If the application is still not working, check the logs of the pod to diagnose any further issues:
+
+```bash
+kubectl logs <pod-name>
+```
+
+Replace `<pod-name>` with the name of the running pod.
+
+By following these steps, you should be able to correct the deployment and service configuration, and make the Python application accessible on the specified NodePort.

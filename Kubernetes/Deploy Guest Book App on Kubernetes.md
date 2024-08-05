@@ -1,33 +1,32 @@
- ## Problem Statement:
+## Problem Statement
 
 The Nautilus Application development team has finished development of one of the applications and it is ready for deployment. It is a guestbook application that will be used to manage entries for guests/visitors. As per discussion with the DevOps team, they have finalized the infrastructure that will be deployed on Kubernetes cluster. Below you can find more details about it.
-
 
 BACK-END TIER
 
 - Create a deployment named *redis-master* for Redis master.
 
-     - Replicas count should be *1*.
+  - Replicas count should be *1*.
 
-     - Container name should be *master-redis-xfusio*n and it should use image *redis*.
+  - Container name should be *master-redis-xfusio*n and it should use image *redis*.
 
-     - Request resources as CPU should be *100m* and Memory should be *100Mi*.
+  - Request resources as CPU should be *100m* and Memory should be *100Mi*.
 
-     - Container port should be redis default port i.e *6379*.
+  - Container port should be redis default port i.e *6379*.
 
 - Create a service named *redis-master* for Redis master. Port and targetPort should be Redis default port i.e *6379*.
 
 - Create another deployment named *redis-slave* for Redis slave.
 
-     - Replicas count should be *2*.
+  - Replicas count should be *2*.
 
-     - Container name should be *slave-redis-xfusion* and it should use *gcr.io/google_samples/gb-redisslave:v3 image*.
+  - Container name should be *slave-redis-xfusion* and it should use *gcr.io/google_samples/gb-redisslave:v3 image*.
 
-     - Requests resources as CPU should be *100m* and Memory should be *100Mi*.
+  - Requests resources as CPU should be *100m* and Memory should be *100Mi*.
 
-     - Define an environment variable named *GET_HOSTS_FROM* and its value should be *dns*.
+  - Define an environment variable named *GET_HOSTS_FROM* and its value should be *dns*.
 
-     - Container port should be Redis default port i.e *6379*.
+  - Container port should be Redis default port i.e *6379*.
 
 - Create another service named *redis-slave*. It should use Redis default port i.e *6379*.
 
@@ -35,22 +34,25 @@ FRONT END TIER
 
 - Create a deployment named *frontend*.
 
-     - Replicas count should be *3*.
+  - Replicas count should be *3*.
 
-     - Container name should be php-redis-xfusion and it should use *gcr.io/google-samples/gb-frontend@sha256:cbc8ef4b0a2d0b95965e0e7dc8938c270ea98e34ec9d60ea64b2d5f2df2dfbbf image*.
+  - Container name should be php-redis-xfusion and it should use *gcr.io/google-samples/gb-frontend@sha256:cbc8ef4b0a2d0b95965e0e7dc8938c270ea98e34ec9d60ea64b2d5f2df2dfbbf image*.
 
-     - Request resources as CPU should be *100m* and Memory should be *100Mi*.
+  - Request resources as CPU should be *100m* and Memory should be *100Mi*.
 
-     - Define an environment variable named as *GET_HOSTS_FROM* and its value should be *dns*.
+  - Define an environment variable named as *GET_HOSTS_FROM* and its value should be *dns*.
 
-     - Container port should be *80*.
+  - Container port should be *80*.
 
 - Create a service named *frontend*. Its type should be NodePort, port should be *80* and its nodePort should be *30009*.
 
 Finally, you can check the guestbook app by clicking on *App* button.
 
- ## Solution:
-Manifest file for Backend Tier
+## Solution
+
+### 1. Backend Tier Setup
+
+To deploy the Redis master, use the following manifest file `redis-master.yaml`:
 
 ```yaml
 apiVersion: apps/v1
@@ -157,11 +159,15 @@ spec:
 status:
   loadBalancer: {}
 ```
-Now we will apply this yaml file
+
+Now we will apply this `backend.yaml` file
+
 ```bash
 kubectl apply -f backend.yaml 
 ```
-Output:
+
+Expected Output:
+
 ```
 deployment.apps/redis-master created
 service/redis-master created
@@ -169,7 +175,9 @@ deployment.apps/redis-slave created
 service/redis-slave created
 ```
 
-Manifest file Frontend Tier.
+### 2. Frontend Tier Setup
+
+Create the frontend deployment using the following manifest file `frontend.yaml`:
 
 ```yaml
 apiVersion: apps/v1
@@ -227,20 +235,30 @@ spec:
 status:
   loadBalancer: {}
 ```
-Now we will apply the frontend yaml file.
+
+Now we will apply the `frontend.yaml` file.
+
 ```bash
 kubectl apply -f frontend.yaml 
 ```
-output:
+
+Expected output:
+
 ```
 deployment.apps/frontend created
 service/frontend created
 ```
-The view all deployments,services and pods we created.
+
+### 3. Verify the Deployments, Services, and Pods
+
+To view all the created deployments, services, and pods, use:
+
 ```bash
 kubectl get all
 ```
+
 Output:
+
 ```
 NAME                                READY   STATUS    RESTARTS   AGE
 pod/frontend-75d9985df9-685dp       1/1     Running   0          19s
@@ -267,3 +285,21 @@ replicaset.apps/redis-master-54dd49b469   1         1         1       7m58s
 replicaset.apps/redis-master-6f846d5cf7   0         0         0       10m
 replicaset.apps/redis-slave-67f788df9c    2         2         2       10m
 ```
+
+### 4. Access the Guestbook Application
+
+To access the guestbook application:
+
+Obtain Node IP: Get the IP address of any Kubernetes node. This can be done through your cloud provider's dashboard or by running:
+
+```bash
+kubectl get nodes -o wide
+```
+
+Access the App: Open a web browser and go to http://<node-ip>:30009, where <node-ip> is the IP address of your Kubernetes node.
+
+Check Application: Verify that the guestbook application is running and accessible.
+
+### Summary
+
+This solution outlines the steps to deploy a guestbook application with Redis master and slave tiers on Kubernetes, along with a frontend tier. It includes creating deployments and services for each component, verifying their status, and accessing the application via a NodePort service.
