@@ -30,7 +30,3 @@ Expected Output:
  NAME    READY   UP-TO-DATE   AVAILABLE   AGE
  nginx   1/1     1            1           10s
 ```
-
-### Summary
-
-By following these steps, you have successfully created a Kubernetes Deployment for the nginx application using the nginx:latest image. The provided commands allow you to verify the Deployment, inspect Pod details, check logs, and perform scaling or updates as needed. This process ensures that the application is properly deployed and managed within your Kubernetes cluster.
