@@ -10,6 +10,8 @@
 
 ## Solution
 
+### 1. Create a NameSpace
+
  To create the namespace where the deployment and service will reside:
 
 ```bash
@@ -21,6 +23,8 @@ This command will create a new namespace called httpd-namespace-nautilus.
 ```
 namespace/httpd-namespace-nautilus created
 ```
+
+### 2. Create a Deployment
 
 Create a Kubernetes Deployment by saving the following YAML configuration to a file named `deployment.yaml`:
 
@@ -59,7 +63,8 @@ kubectl apply -f deployment.yaml
 deployment.apps/httpd-deployment-nautilus created
 ```
 
- Create Service
+### 3. Create Service
+
 Save the following YAML configuration to a file named `service.yaml`:
 
 ```yaml
@@ -115,6 +120,8 @@ Check Services:
 ```bash
 kubectl get svc -n httpd-namespace-nautilus
 ```
+
+Expected Output:
 
 ```
 NAME                     TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
