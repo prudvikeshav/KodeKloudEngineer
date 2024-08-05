@@ -17,7 +17,7 @@ To create a Kubernetes Job based on the provided requirements, follow these step
 
 ### 1. Create the Job Configuration
 
-Save the following YAML configuration to a file named countdown-job.yaml:
+Save the following YAML configuration to a file named `countdown-job.yaml`:
 
 ```yaml
 apiVersion: batch/v1
