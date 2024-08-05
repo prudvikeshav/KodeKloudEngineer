@@ -8,68 +8,135 @@
 
 - Update the image from *nginx:1.19* to *nginx:latest*
 
-## Solution
+Here’s a step-by-step guide to implementing the required updates to the `nginx-deployment` and `nginx-service`:
 
- Check the service running on the cluster.
+### 1. Update the Service NodePort
 
-```bash
-kubectl get service
-NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP        63m
-nginx-service   NodePort    10.96.54.165   <none>        80:30008/TCP   100s
-```
+1. **Check the Current Service Configuration:**
 
- We need to update the nodeport from 30008 to 32165.
+   ```bash
+   kubectl get service
+   ```
 
-```bash
-kubectl edit service nginx-service
-service/nginx-service edited
-```
+   Output:
 
- To check details of the service are correctly edited we use the describe command.
+   ```
+   NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+   kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP        63m
+   nginx-service   NodePort    10.96.54.165   <none>        80:30008/TCP   100s
+   ```
 
-```bash
-kubectl describe service nginx-service
-Name:                     nginx-service
-Namespace:                default
-Labels:                   <none>
-Annotations:              <none>
-Selector:                 app=nginx-app
-Type:                     NodePort
-IP Family Policy:         SingleStack
-IP Families:              IPv4
-IP:                       10.96.54.165
-IPs:                      10.96.54.165
-Port:                     <unset>  80/TCP
-TargetPort:               80/TCP
-NodePort:                 <unset>  32165/TCP
-Endpoints:                10.244.0.5:80
-Session Affinity:         None
-External Traffic Policy:  Cluster
-Events:                   <none>
-```
+2. **Update the NodePort:**
 
- To check the deployments running on the cluster.
+   Edit the `nginx-service` to change the NodePort from `30008` to `32165`.
 
-```bash
-kubectl get deployments.apps
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   1/1     1            1           4m37s
-```
+   ```bash
+   kubectl edit service nginx-service
+   ```
 
- We need to update the image and replicas of the deployment nginx-deployment.
+   In the editor, locate and update the `nodePort` value:
 
-```bash
-kubectl edit deployments.apps nginx-deployment
-deployment.apps/nginx-deployment edited
-```
+   ```yaml
+   spec:
+     ports:
+     - port: 80
+       targetPort: 80
+       nodePort: 32165
+       protocol: TCP
+   ```
 
- After updating the replicas has been increased from 1 to 5.
+3. **Verify the Update:**
 
-```
-kubectl get deployments.apps
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   5/5     5            5           7m6s
-```
+   ```bash
+   kubectl describe service nginx-service
+   ```
 
- To check it is working fine Click on the *app* button on the right top of your browser.
+   Output should reflect the new NodePort value:
+
+   ```
+   Name:                     nginx-service
+   Namespace:                default
+   Labels:                   <none>
+   Annotations:              <none>
+   Selector:                 app=nginx-app
+   Type:                     NodePort
+   IP Family Policy:         SingleStack
+   IP Families:              IPv4
+   IP:                       10.96.54.165
+   IPs:                      10.96.54.165
+   Port:                     <unset>  80/TCP
+   TargetPort:               80/TCP
+   NodePort:                 <unset>  32165/TCP
+   Endpoints:                10.244.0.5:80
+   Session Affinity:         None
+   External Traffic Policy:  Cluster
+   Events:                   <none>
+   ```
+
+### 2. Update the Deployment
+
+1. **Check the Current Deployment Configuration:**
+
+   ```bash
+   kubectl get deployments.apps
+   ```
+
+   Output:
+
+   ```
+   NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+   nginx-deployment   1/1     1            1           4m37s
+   ```
+
+2. **Update the Image and Replicas:**
+
+   Edit the `nginx-deployment` to update the image and replicas.
+
+   ```bash
+   kubectl edit deployment nginx-deployment
+   ```
+
+   In the editor, make the following updates:
+
+   - **Change the image from `nginx:1.19` to `nginx:latest`:**
+
+     ```yaml
+     spec:
+       containers:
+       - name: nginx
+         image: nginx:latest
+     ```
+
+   - **Increase the replicas from `1` to `5`:**
+
+     ```yaml
+     spec:
+       replicas: 5
+     ```
+
+3. **Verify the Deployment Updates:**
+
+   ```bash
+   kubectl get deployments.apps
+   ```
+
+   Output should show the updated replicas:
+
+   ```
+   NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+   nginx-deployment   5/5     5            5           7m6s
+   ```
+
+### Final Verification
+
+1. **Check the pods to ensure they are running:**
+
+   ```bash
+   kubectl get pods
+   ```
+
+2. **Confirm the new NodePort is in effect by accessing the service:**
+
+   You can access the service using the new NodePort `32165` in your browser or via `curl`.
+
+By following these steps, you ensure that the `nginx-deployment` and `nginx-service` are updated without deleting them.

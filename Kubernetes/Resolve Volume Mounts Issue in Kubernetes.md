@@ -2,36 +2,58 @@
 
 We encountered an issue with our Nginx and PHP-FPM setup on the Kubernetes cluster this morning, which halted its functionality. Investigate and rectify the issue:
 
-The pod name is *nginx-phpfpm* and configmap name is *nginx-config*. Identify and fix the problem.
+The pod name is *nginx-phpfpm* and the configmap name is *nginx-config*. Identify and fix the problem.
 
-Once resolved, copy */home/thor/index.php* file from the *jump host* to the *nginx-container* within the nginx document root. After this, you should be able to access the website using *Website* button on the top bar.
+Once resolved, copy the */home/thor/index.php* file from the *jump host* to the *nginx-container* within the nginx document root. After this, you should be able to access the website using the *Website* button on the top bar.
 
 ## Solution
 
-First we shall check the pods are running.
+To solve the issue, we need to follow several steps to diagnose the problem and apply the necessary fixes. Below is a detailed explanation of each step along with the commands used.
+
+### 1. Check the Pods
+
+First, verify the status of the pods to ensure they are running.
+
+```bash
+kubectl get pods
+```
+
+Output:
 
 ```
-kubectl get pods
 NAME           READY   STATUS    RESTARTS   AGE
 nginx-phpfpm   2/2     Running   0          113s
 ```
 
-To View the Services present.
+The pod *nginx-phpfpm* is running and both containers are ready.
+
+### 2. Check the Services
+
+Next, check the services to confirm the ports on which Nginx is listening.
+
+```bash
+kubectl get svc
+```
+
+Output:
 
 ```
-kubectl get svc
 NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP          10m
 nginx-service   NodePort    10.96.233.77   <none>        8099:30008/TCP   3m3s
 ```
 
-Here we can see the port nginx listens at 8099 and nodeport 30008.
+The Nginx service listens on port 8099, with NodePort 30008.
 
-Now we shall check the any configmaps created.
+### 3. Check ConfigMaps
 
+Verify the configmaps to ensure the Nginx configuration is correctly loaded.
+
+```bash
+kubectl get configmaps
 ```
-kubectl get configmaps 
-```
+
+Output:
 
 ```
 NAME               DATA   AGE
@@ -39,11 +61,13 @@ kube-root-ca.crt   1      12m
 nginx-config       1      4m40s
 ```
 
-We shall check if any errors in nginx-config.
+Check the contents of the *nginx-config* configmap.
 
+```bash
+kubectl describe configmaps nginx-config
 ```
-kubectl describe configmaps nginx-config 
-```
+
+Output:
 
 ```
 Name:         nginx-config
@@ -78,18 +102,23 @@ http {
   }
 }
 
-
 BinaryData
 ====
 
 Events:  <none>
 ```
 
-Now we shall check any issues in nginx-phpfpm container.
+The configuration in the configmap seems correct.
 
+### 4. Check Pod Details
+
+Examine the details of the *nginx-phpfpm* pod to identify any issues.
+
+```bash
+kubectl describe pod nginx-phpfpm
 ```
-kubectl describe pod nginx-phpfpm 
-```
+
+Output:
 
 ```
 Name:             nginx-phpfpm
@@ -173,24 +202,46 @@ Events:
   Normal  Started    2m22s  kubelet            Started container nginx-container
 ```
 
-We can see that the mount file path was specified wrong
+### 5. Identify the Issue
+
+The mounting path for the shared volume in the Nginx container is incorrect. It should be `/var/www/html` instead of `/usr/share/nginx/html`.
+
+Incorrect:
 
 ```
-Mounts:
-      /etc/nginx/nginx.conf from nginx-config-volume (rw,path="nginx.conf")
-     ** /usr/share/nginx/html from shared-files (rw)
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-fgcgs (to)
+/usr/share/nginx/html from shared-files (rw)
 ```
 
-We should change */usr/share/nginx/html* to */var/www/html*
+Correct:
 
 ```
-kubectl apply -f /tmp/kubectl-edit-365337046.yaml  --force
+/var/www/html from shared-files (rw)
+```
+
+### 6. Fix the Mount Path
+
+To fix the mount path, update the Pod configuration and apply the changes.
+
+```bash
+kubectl apply -f /tmp/kubectl-edit-365337046.yaml --force
+```
+
+Output:
+
+```
 pod/nginx-phpfpm configured
 ```
 
-Now we need to copy the */home/thor/index.php* from local to *nginx-container*.
+### 7. Copy the PHP File
 
-```
+After fixing the issue, copy the `index.php` file from the jump host to the `nginx-container` within the Nginx document root.
+
+```bash
 kubectl cp /home/thor/index.php nginx-phpfpm:/var/www/html -c nginx-container
 ```
+
+### Verification
+
+To verify that the issue is resolved and the website is accessible, use the *Website* button on the top bar. The website should now be functional, serving the PHP file correctly.
+
+This concludes the detailed solution to investigate and rectify the Nginx and PHP

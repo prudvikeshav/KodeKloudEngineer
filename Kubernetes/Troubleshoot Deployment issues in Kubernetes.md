@@ -1,27 +1,31 @@
-## Problem Statement:
+## Problem Statement
 
-Last week, the Nautilus DevOps team deployed a Redis app on the Kubernetes cluster, which has been working fine so far. This morning one of the team members was making some changes to this existing setup, but he made some mistakes and the app went down. We need to fix this as soon as possible. Please take a look.
+The Nautilus DevOps team is facing issues with their Redis application deployment on Kubernetes. The pods are not running due to errors related to the container image and ConfigMap. Here's how to resolve the issues:
 
-- The deployment name is *redis-deployment*. The pods are not running right now, so please look into the issue and fix the same.
+## Solution
 
-# Solution
+### 1. Identify the Issues
 
-First, we shall check the pods that are running.
+**Pod Status:**
 
-```
+```bash
 kubectl get pods
 ```
+
+**Output:**
 
 ```
 NAME                                READY   STATUS              RESTARTS   AGE
 redis-deployment-54cdf4f76d-lvj2m   0/1     ContainerCreating   0          52s
 ```
 
-As we know a redis-deployment has been deployed before and we need to check why it is failing so we need to describe the deployment to check the configuration of the deployment.
+**Deployment Description:**
 
+```bash
+kubectl describe deployments.apps redis-deployment
 ```
-kubectl describe deployments.apps redis-deployment 
-```
+
+**Output:**
 
 ```
 Name:                   redis-deployment
@@ -38,7 +42,7 @@ Pod Template:
   Labels:  app=redis
   Containers:
    redis-container:
-    Image:      redis:alpin
+    Image:      redis:alpin  # Error: Typo in image name
     Port:       6379/TCP
     Host Port:  0/TCP
     Requests:
@@ -54,7 +58,7 @@ Pod Template:
     SizeLimit:  <unset>
    config:
     Type:          ConfigMap (a volume populated by a ConfigMap)
-    Name:          redis-conig
+    Name:          redis-conig  # Error: Typo in ConfigMap name
     Optional:      false
   Node-Selectors:  <none>
   Tolerations:     <none>
@@ -69,30 +73,102 @@ Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  98s   deployment-controller  Scaled up replica set redis-deployment-54cdf4f76d to 1
+  Warning FailedMount       90s   kubelet, node1          MountVolume.SetUp failed for volume "config" : configmap "redis-conig" not found
+  Warning FailedMount       69s   kubelet, node1          Unable to attach or mount volumes: unmounted volumes=[config], unattached volumes=[], failed to process volumes=[]: timed out waiting for the condition
 ```
 
-From the description of the deployment, we can see the wrong image name was specified. That needs to be updated. To find all errors we can check on events.
+**Issues Identified:**
 
-```
-kubectl get  events
-```
+1. **Image Name Typo:** The image specified is `redis:alpin` instead of `redis:alpine`.
+2. **ConfigMap Name Typo:** The ConfigMap specified is `redis-conig` instead of `redis-config`.
 
-```
-LAST SEEN   TYPE      REASON                    OBJECT                                   MESSAGE
-9m12s       Normal    Starting                  node/kodekloud-control-plane             Starting kubelet.
-9m11s       Normal    NodeHasSufficientMemory   node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeHasSufficientMemory
-9m11s       Normal    NodeHasNoDiskPressure     node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeHasNoDiskPressure
-9m11s       Normal    NodeHasSufficientPID      node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeHasSufficientPID
-9m11s       Normal    NodeAllocatableEnforced   node/kodekloud-control-plane             Updated Node Allocatable limit across pods
-9m1s        Normal    RegisteredNode            node/kodekloud-control-plane             Node kodekloud-control-plane event: Registered Node kodekloud-control-plane in Controller
-8m53s       Normal    Starting                  node/kodekloud-control-plane
-8m52s       Normal    NodeReady                 node/kodekloud-control-plane             Node kodekloud-control-plane status is now: NodeReady
-7m43s       Normal    Scheduled                 pod/redis-deployment-54cdf4f76d-lvj2m    Successfully assigned default/redis-deployment-54cdf4f76d-lvj2m to kodekloud-control-plane
-90s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    MountVolume.SetUp failed for volume "config" : configmap "redis-conig" not found
-69s         Warning   FailedMount               pod/redis-deployment-54cdf4f76d-lvj2m    Unable to attach or mount volumes: unmounted volumes=[config], unattached volumes=[], failed to process volumes=[]: timed out waiting for the condition
+### 2. Fix the Deployment
 
-7m43s       Normal    SuccessfulCreate          replicaset/redis-deployment-54cdf4f76d   Created pod: redis-deployment-54cdf4f76d-lvj2m
-7m43s       Normal    ScalingReplicaSet         deployment/redis-deployment              Scaled up replica set redis-deployment-54cdf4f76d to 1
+**Update the Deployment:**
+
+To fix the issues, you need to update the deployment configuration. First, create a corrected YAML file or edit the deployment directly.
+
+**Edit the Deployment:**
+
+```bash
+kubectl edit deployment redis-deployment
 ```
 
-Now we can also observe the configMap name was specified wrong. It also be updated.
+**Update the following fields in the editor:**
+
+```yaml
+spec:
+  containers:
+  - name: redis-container
+    image: redis:alpine  # Corrected image name
+  volumes:
+  - name: config
+    configMap:
+      name: redis-config  # Corrected ConfigMap name
+```
+
+**Apply the Updated Configuration:**
+
+Alternatively, you can apply a corrected YAML configuration file. Create or edit the file named `redis-deployment-corrected.yaml` with the following content:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis-container
+        image: redis:alpine
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: config
+          mountPath: /redis-master
+        - name: data
+          mountPath: /redis-master-data
+      volumes:
+      - name: config
+        configMap:
+          name: redis-config
+      - name: data
+        emptyDir: {}
+```
+
+**Apply the Updated YAML:**
+
+```bash
+kubectl apply -f redis-deployment-corrected.yaml
+```
+
+### 3. Verify the Fix
+
+**Check Pods Status:**
+
+```bash
+kubectl get pods
+```
+
+**Verify Pod Details:**
+
+```bash
+kubectl describe pods redis-deployment-54cdf4f76d-<pod-suffix>
+```
+
+**Check Events:**
+
+```bash
+kubectl get events
+```
+
+By following these steps, the issues with the Redis deployment should be resolved, and the pods should be running as expected.
