@@ -64,7 +64,8 @@ NAME               COMPLETIONS   DURATION   AGE
 countdown-devops   0/1           9s         9s
 ```
 
-4. Check Job Details and Logs
+### 4. Check Job Details and Logs
+
 To get detailed information about the Job, including status and events, use:
 
 ```bash
