@@ -1,6 +1,6 @@
 ## Problem Statement
 
-The Nautilus DevOps team is facing issues with their Redis application deployment on Kubernetes. The pods are not running due to errors related to the container image and ConfigMap. Here's how to resolve the issues:
+The Nautilus DevOps team is facing issues with their Redis application deployment on Kubernetes. The pods are not running due to errors related to the container image and ConfigMap.
 
 ## Solution
 
