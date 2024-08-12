@@ -7,7 +7,9 @@ Welcome to the KodeKloud Engineer Lab Solutions repository! This repository is d
 KodeKloud is an excellent platform for learning DevOps and Cloud technologies through hands-on labs and practical exercises. This repository aims to consolidate solutions and answers for the labs, helping learners understand the concepts better and enhance their problem-solving skills.
 
 ### Labs Covered
-
+- <details>
+  <summary>**Docker Labs**</summary>
+  1. Create a Docker Image From Container. [link](doc: Docker\Create a Docker Image From Container.md)
 - **Docker Labs**
 - **Kubernetes Labs**
 - **Jenkins**
