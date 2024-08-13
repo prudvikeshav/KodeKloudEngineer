@@ -99,6 +99,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 - [Git hard reset](GIT/Git%20hard%20reset.md)
 - [Git Clean](GIT/Git%20Clean.md)
 - [Git Stash](GIT/Git%20Stash.md)
+- [Git Create Branches](GIT/Git%20Create%20Branches.md)
 
 </details>
 
