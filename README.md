@@ -94,7 +94,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 - [Git Merge Branches](GIT/Git%20Merge%20Branches.md)
 - [Git Manage Remotes](GIT/Git%20Manage%20Remotes.md)
 - [Git Revert Some Changes](GIT/Git%20Revert%20Some%20Changes.md)
-- [Git Cherry Pick](GIT/Git%20Cherry%20Pick,md)
+- [Git Cherry Pick](GIT/Git%20Cherry%20Pick.md)
 - [Manage Git Pull Requests](GIT/Manage%20Git%20Pull%20Requests.md)
 - [Git hard reset](GIT/Git%20hard%20reset.md)
 - [Git Clean](GIT/Git%20Clean.md)
