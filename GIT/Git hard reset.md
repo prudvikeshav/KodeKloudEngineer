@@ -6,8 +6,6 @@ In _/usr/src/kodekloudrepos/official git_ repository, reset the git commit histo
 
 Also make sure to push your changes.
 
-Here's an enhanced description for the solution part of the problem, providing more detail and clarity on each step:
-
 ## Solution
 
 1. **Login to the Storage Server and Gain Root Access:**
