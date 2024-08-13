@@ -44,7 +44,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 - [Deploy Guest Book App on Kubernetes](Kubernetes/Deploy%20Guest%20Book%20App%20on%20Kubernetes.md)
 - [Deploy Highly Available Pods with Replication Controller](Kubernetes/Deploy%20Highly%20Available%20Pods%20with%20Replication%20Controller.md)
 - [Deploy Iron Gallery App on Kubernetes](Kubernetes/Deploy%20Iron%20Gallery%20App%20on%20Kubernetes.md)
-- [Deploy Jenkins on Kubernetes](Kubernetes/Deploy%20Jenkins%20on%20Kubernetes.md)
+- [Deploy Ansible on Kubernetes](Kubernetes/Deploy%20Ansible%20on%20Kubernetes.md)
 - [Deploy Lamp Stack on Kubernetes Cluster](Kubernetes/Deploy%20Lamp%20Stack%20on%20Kubernetes%20Cluster.md)
 - [Deploy MySQL on Kubernetes](Kubernetes/Deploy%20My%20SQL%20on%20Kubernetes.md)
 - [Deploy Nginx Web Server on Kubernetes Cluster](Kubernetes/Deploy%20Nginx%20Web%20Server%20on%20Kubernetes%20Cluster.md)
@@ -79,7 +79,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 </details>
 
-# Git Labs
+## Git Labs
 
 <details>
 <summary>Click to expand Git Labs files</summary>
@@ -107,10 +107,10 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 </details>
 
-## Jenkins Labs
+## Ansible Labs
 
 <details>
-<summary>Click to expand Jenkins Labs files</summary>
+<summary>Click to expand Ansible Labs files</summary>
 </details>
 
 ## Linux Labs
