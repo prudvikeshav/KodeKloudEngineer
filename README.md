@@ -103,6 +103,8 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 <details>
 <summary>Click to expand Linux Labs files</summary>
 
+</details>
+
 ## Repository Structure
 
 The repository is organized into folders based on the type of lab and technology. Each folder contains:
