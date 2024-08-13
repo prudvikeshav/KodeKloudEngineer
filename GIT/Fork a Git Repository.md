@@ -26,7 +26,7 @@ Here's an enhanced solution with clearer steps and detailed instructions for for
 
 **Screenshot:**
 
-![login](GIT\images\login.png)
+[login.png](https://postimg.cc/T5D2gGKD)
 
 **Description:**
 The screenshot shows the login screen of the Gitea server. Ensure that you correctly enter the username and password to access Jon’s account.
@@ -39,8 +39,7 @@ The screenshot shows the login screen of the Gitea server. Ensure that you corre
 2. Click on the repository name to open it.
 
 **Screenshot:**
-
-![repo](GIT\images\repo.png)
+[login.png](https://postimg.cc/T5D2gGKD)
 
 **Description:**
 The screenshot shows the repository `sarah/story-blog` on the Gitea interface. Confirm that you are viewing the correct repository before proceeding.
