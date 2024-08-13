@@ -53,7 +53,7 @@ The screenshot shows the repository `sarah/story-blog` on the Gitea interface. C
 
 **Screenshot:**
 
-![forkbutton](https://github.com/prudvikeshav/KodekloudEnginner/blob/fb726c18b0ecafbbed1da95b04eb13ea324871a2/GIT/images/login.png)
+![forkbutton](https://github.com/prudvikeshav/KodekloudEnginner/blob/fb726c18b0ecafbbed1da95b04eb13ea324871a2/GIT/images/forkbutton.png)
 
 **Description:**
 The screenshot highlights the _Fork_ button and confirms that you are forking the repository. This action will create a copy of `sarah/story-blog` in Jon’s repositories.
