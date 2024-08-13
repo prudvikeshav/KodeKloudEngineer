@@ -6,8 +6,6 @@ Install _git_ package using _yum_on _Storage server_.
 
 After that, create/init a git repository named _/opt/news.git_ (use the exact name as asked and make sure not to create a bare repository).
 
-Certainly! Here's an enhanced version of the solution with clear and precise instructions for creating a Git repository on the Storage server. This version includes improved formatting and details for each step.
-
 ## Solution
 
 ### 1. Log In to the Storage Server and Switch to Root
@@ -89,5 +87,3 @@ drwxr-xr-x 4 root root 4096 Aug 13 06:22 refs
 ```
 
 This output verifies that the Git repository has been initialized with the necessary directory structure.
-
-This enhanced version of the solution provides a clearer and more detailed guide, making it easier to follow the instructions and verify each step.
