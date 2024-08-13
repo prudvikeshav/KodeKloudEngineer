@@ -4,13 +4,13 @@ A new developer just joined the Nautilus development team and has been assigned 
 
 Click on the _Gitea UI_ button on the top bar. You should be able to access the _Gitea UI_. Login to Gitea server using username _max_ and password _Max_pass123_.
 
-- a. Create a new git repository _story_ecommerce_ under _max_ user.
+- a. Create a new git repository _story_beta_ under _max_ user.
 
 - b. SSH into storage server using user _max_ and password _Max_pass123_ and clone this newly created repository under user _max_ home directory i.e /home/_max_.
 
 - c. Copy all files from location _/usr/dba_ to the repository and commit/push your changes to the _master_ branch. The commit message must be _"add stories"_(must be done in single commit).
 
-- d. Create a new branch _max_demo_ from _master_.
+- d. Create a new branch _max_apps_ from _master_.
 
 - e. Copy a file _story-index-max.txt_ from location _/tmp/stories/_to the repository. This file has a typo, which you can fix by changing the word Mooose to Mouse. Commit and push the changes to the newly created branch. Commit message must be "typo fixed for Mooose" (must be done in single commit).
 
@@ -18,58 +18,49 @@ Note: For these kind of scenarios requiring changes to be done in a web UI, plea
 
 Here’s an enhanced and detailed solution to accomplish the given tasks, including more precise instructions and details for each step:
 
----
-
-## Problem Statement
-
-A new developer needs to create a new repository on the Gitea server and perform several tasks involving repository management and file updates. The tasks are as follows:
-
-1. Create a new Git repository named `story_ecommerce` under the user account `max` on the Gitea server.
-2. SSH into the storage server using the credentials provided and clone the newly created repository.
-3. Copy files from a specific location to the repository, commit, and push the changes.
-4. Create a new branch from `master`, make modifications to a file, and push the changes to the new branch.
-
 ## Solution
 
 ### 1. Login to Gitea and Create a New Repository
 
 1. **Access Gitea UI:**
-   - Open your web browser and click on the _Gitea UI_ button on the top bar or navigate directly to the Gitea server’s URL.
-   - Login using the username `max` and password `Max_pass123`.
-
-   **Screenshot**
-
-2. **Create a New Repository:**
-   - Once logged in, click on the `+` icon or navigate to the `New Repository` page.
-   - Enter the repository name as `story_ecommerce`.
-   - Fill in other required fields (e.g., description, visibility) as needed. For a simple setup, you may leave default options.
-   - Click the `Create Repository` button.
+   - Open your web browser and navigate to the Gitea server’s URL or click the _Gitea UI_ button.
+   - Log in using the username `max` and password `Max_pass123`.
 
    **Screenshot**:
-   ![forked](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Repo%20creation.png)
+
+   ![Gitea Login](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/max%20login.png)
+
+2. **Create a New Repository:**
+   - After logging in, find and click the `+` icon or navigate to the `New Repository` page.
+   - Enter `story_beta` as the repository name.
+   - Fill in other optional fields as needed, such as description or visibility.
+   - Click `Create Repository`.
+
+   **Screenshot**:
+   ![Create Repository](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Repo%20creation.png)
 
 ### 2. SSH into Storage Server and Clone the Repository
 
-1. **Login to the Storage Server:**
-   - Open a terminal and SSH into the storage server using the provided credentials:
+1. **SSH into the Storage Server:**
+   - Open a terminal and connect to the storage server:
 
      ```bash
      ssh max@ststor01
      ```
 
-   - Enter the password `Max_pass123` when prompted.
+   - Enter the password `Max_pass123`.
 
 2. **Clone the Repository:**
-   - Clone the newly created repository into the home directory of user `max`:
+   - Clone the newly created repository into the home directory:
 
      ```bash
-     git clone http://git.stratos.xfusioncorp.com/max/story_ecommerce.git /home/max/story_ecommerce
+     git clone http://git.stratos.xfusioncorp.com/max/story_beta.git /home/max/story_beta
      ```
 
    - **Expected Output:**
 
      ```
-     Cloning into 'story_ecommerce'...
+     Cloning into 'story_beta'...
      warning: You appear to have cloned an empty repository.
      Checking connectivity... done.
      ```
@@ -77,107 +68,131 @@ A new developer needs to create a new repository on the Gitea server and perform
 ### 3. Copy Files and Commit Changes to `master` Branch
 
 1. **Copy Files from `/usr/dba` to Repository:**
-   - Copy all files from `/usr/dba` into the repository directory:
+   - Copy all files from `/usr/dba` to the repository directory:
 
      ```bash
-     cp -r /usr/dba/* /home/max/story_ecommerce/
+     cp -r /usr/dba/* /home/max/story_beta/
      ```
 
-2. **Commit and Push Changes:**
-   - Navigate to the repository directory:
+2. **Navigate to the Repository Directory:**
+   - Change to the repository directory:
 
      ```bash
-     cd /home/max/story_ecommerce
+     cd /home/max/story_beta
      ```
 
-   - Stage and commit the changes:
+3. **Stage and Commit Changes:**
+   - Add all files to the staging area:
 
      ```bash
      git add .
+     ```
+
+   - Commit the changes with the specified message:
+
+     ```bash
      git commit -m "add stories"
      ```
 
+   - **Expected Output:**
+
+     ```
+     2 files changed, 42 insertions(+)
+     create mode 100644 frogs-and-ox.txt
+     create mode 100644 lion-and-mouse.txt
+     ```
+
+4. **Push Changes to Remote Repository:**
    - Push the changes to the `master` branch:
 
      ```bash
      git push origin master
      ```
 
-   **Screenshot**: Capture the terminal showing the `git add`, `git commit`, and `git push` commands, and confirm successful push to the `master` branch.
+   - **Expected Output:**
 
-### 4. Create a New Branch `max_demo` and Modify a File
+     ```
+     Counting objects: 4, done.
+     Delta compression using up to 36 threads.
+     Compressing objects: 100% (4/4), done.
+     Writing objects: 100% (4/4), 1.19 KiB | 0 bytes/s, done.
+     Total 4 (delta 0), reused 0 (delta 0)
+     remote: . Processing 1 references
+     remote: Processed 1 references in total
+     To <http://git.stratos.xfusioncorp.com/max/story_beta.git>
+     - [new branch]      master -> master
+     ```
 
-1. **Create a New Branch from `master`:**
-   - Create and switch to the new branch `max_demo`:
+   **Screenshot**:
+   ![Add Files and Commit](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/git%20add.png)
+
+### 4. Create a New Branch `max_apps` and Modify a File
+
+1. **Create a New Branch:**
+   - Create and switch to a new branch named `max_apps`:
 
      ```bash
-     git checkout -b max_demo
+     git checkout -b max_apps
      ```
 
 2. **Copy and Modify the File:**
-   - Copy the file `story-index-max.txt` from `/tmp/stories` to the repository:
+   - Copy `story-index-max.txt` from `/tmp/stories` to the repository:
 
      ```bash
-     cp /tmp/stories/story-index-max.txt /home/max/story_ecommerce/
+     cp /tmp/stories/story-index-max.txt /home/max/story_beta/
      ```
 
-   - Open and edit the file to fix the typo (change `Mooose` to `Mouse`):
+   - Open and edit `story-index-max.txt` to fix the typo (`Mooose` to `Mouse`):
 
      ```bash
      vi story-index-max.txt
      ```
 
-   - Save and exit the editor (in `vi`, this is done with `:wq`).
+   - Save the file and exit the editor (in `vi`, use `:wq`).
 
 3. **Stage, Commit, and Push Changes:**
-   - Stage and commit the changes:
+   - Stage the modified file:
 
      ```bash
      git add story-index-max.txt
+     ```
+
+   - Commit the change with the specified message:
+
+     ```bash
      git commit -m "typo fixed for Mooose"
      ```
 
-   - Push the changes to the new branch `max_demo`:
+   - **Expected Output:**
 
-     ```bash
-     git push origin max_demo
+     ```
+     1 file changed, 4 insertions(+)
+     create mode 100644 story-index-max.txt
      ```
 
-   **Screenshot**: Capture the terminal showing the `git checkout -b`, `git add`, `git commit`, and `git push` commands, along with the confirmation of successful push to the `max_demo` branch.
+   - Push the changes to the `max_apps` branch:
 
-### Summary of Commands
+     ```bash
+     git push origin max_apps
+     ```
 
-Here’s a summary of the commands used:
+   - **Expected Output:**
 
-```bash
-# SSH into the storage server
-ssh max@ststor01
+     ```
+     Counting objects: 3, done.
+     Delta compression using up to 36 threads.
+     Compressing objects: 100% (3/3), done.
+     Writing objects: 100% (3/3), 413 bytes | 0 bytes/s, done.
+     Total 3 (delta 0), reused 0 (delta 0)
+     remote:
+     remote: Create a new pull request for 'max_apps':
+     remote:   <http://git.stratos.xfusioncorp.com/max/story_beta/compare/master...max_apps>
+     remote:
+     remote: . Processing 1 references
+     remote: Processed 1 references in total
+     To <http://git.stratos.xfusioncorp.com/max/story_beta.git>
+     - [new branch]      max_apps -> max_apps
+     ```
 
-# Clone the repository
-git clone http://git.stratos.xfusioncorp.com/max/story_ecommerce.git /home/max/story_ecommerce
-
-# Copy files from /usr/dba to the repository
-cp -r /usr/dba/* /home/max/story_ecommerce/
-
-# Navigate to the repository directory
-cd /home/max/story_ecommerce
-
-# Stage, commit, and push changes to master
-git add .
-git commit -m "add stories"
-git push origin master
-
-# Create and switch to a new branch
-git checkout -b max_demo
-
-# Copy and edit the file
-cp /tmp/stories/story-index-max.txt /home/max/story_ecommerce/
-vi story-index-max.txt
-
-# Stage, commit, and push changes to the new branch
-git add story-index-max.txt
-git commit -m "typo fixed for Mooose"
-git push origin max_demo
-```
-
-Ensure to take screenshots or record your actions as required for verification and review purposes.
+   **Screenshot**:
+   ![Final Commit and Push](<https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Final.png>
