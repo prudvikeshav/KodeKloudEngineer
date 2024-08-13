@@ -26,7 +26,7 @@ Here's an enhanced solution with clearer steps and detailed instructions for for
 
 **Screenshot:**
 
-![login](C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094021.png)
+![login](GIT\images\login.png)
 
 **Description:**
 The screenshot shows the login screen of the Gitea server. Ensure that you correctly enter the username and password to access Jon’s account.
@@ -40,7 +40,7 @@ The screenshot shows the login screen of the Gitea server. Ensure that you corre
 
 **Screenshot:**
 
-![repo](C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094101.png)
+![repo](GIT\images\repo.png)
 
 **Description:**
 The screenshot shows the repository `sarah/story-blog` on the Gitea interface. Confirm that you are viewing the correct repository before proceeding.
@@ -54,7 +54,7 @@ The screenshot shows the repository `sarah/story-blog` on the Gitea interface. C
 
 **Screenshot:**
 
-![fork](C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094117.png)
+![forkbutton](GIT\images\fork button.png)
 
 **Description:**
 The screenshot highlights the _Fork_ button and confirms that you are forking the repository. This action will create a copy of `sarah/story-blog` in Jon’s repositories.
@@ -68,7 +68,7 @@ The screenshot highlights the _Fork_ button and confirms that you are forking th
 
 **Screenshot:**
 
-![forked_repo]("C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094142.png")
+![forked](GIT\images\forked.png)
 
 **Description:**
 The screenshot shows the newly forked repository under Jon’s account. This confirms that the repository has been successfully forked and is available for Jon to work on.
