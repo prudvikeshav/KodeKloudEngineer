@@ -90,11 +90,11 @@ Great stuff!! The story has been merged! 👏
 
     - Password: Max_pass123
 
-    ![login](GIT/images/login.png)
+    ![login](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/login.png)
 
 5. View the Repo
 
-    ![repo](GIT/images/Jon%20Repo.png)
+    ![repo](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Jon%20Repo.png)
 
 6. Click the "New Pull Request" button.
 
@@ -104,7 +104,7 @@ Great stuff!! The story has been merged! 👏
 
     - Add tom as a reviewer to the PR.
 
-    ![Tom](GIT/images/Tom%20Assignee.png)
+    ![Tom](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Tom%20Assignee.png)
 
 7. Log In as Tom:
 
@@ -117,7 +117,7 @@ Great stuff!! The story has been merged! 👏
         - Find the PR titled "Added fox-and-grapes story".
         - Review the changes made in the PR. Check the code and commit history to ensure everything is correct.   
 
-    ![Tom](GIT/images/Tom%20PR%20Request.png)
+    ![Tom](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Tom%20PR%20Request.png)
 
 8. Approve and Merge the PR:
 
@@ -125,6 +125,6 @@ Great stuff!! The story has been merged! 👏
     - After reviewing, click the "Approve" button.
     - Merge the PR into the master branch.
 
-    ![Tom](GIT/images/Merged%20PR.png)
+    ![Tom](https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Merged%20PR.png)
 
 This process ensures that all changes are reviewed before being merged into the master branch, maintaining the integrity of the final codebase.
