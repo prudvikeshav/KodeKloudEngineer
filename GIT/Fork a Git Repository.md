@@ -39,7 +39,7 @@ The screenshot shows the login screen of the Gitea server. Ensure that you corre
 2. Click on the repository name to open it.
 
 **Screenshot:**
-[login.png](https://postimg.cc/T5D2gGKD)
+![login.png](https://github.com/prudvikeshav/KodekloudEnginner/blob/fb726c18b0ecafbbed1da95b04eb13ea324871a2/GIT/images/login.png)
 
 **Description:**
 The screenshot shows the repository `sarah/story-blog` on the Gitea interface. Confirm that you are viewing the correct repository before proceeding.
