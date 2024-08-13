@@ -195,4 +195,5 @@ Here’s an enhanced and detailed solution to accomplish the given tasks, includ
      ```
 
    **Screenshot**:
-   ![Final Commit and Push](<https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Final.png>
+
+   ![Final Commit and Push](<https://github.com/prudvikeshav/KodekloudEnginner/blob/main/GIT/images/Final.png>)
