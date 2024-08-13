@@ -1,4 +1,4 @@
- ## Problem Statement:
+ **Problem Statement:**
 There are a number of parameters that are used by the applications. We need to define these as environment variables, so that we can use them as needed within different configs. Below is a scenario which needs to be configured on Kubernetes cluster. Please find below more details about the same.
 
 
@@ -28,9 +28,13 @@ There are a number of parameters that are used by the applications. We need to d
 
 - To check the output, exec into the pod and use *printenv* command.
 
- ## Solution:
+To configure and deploy the Kubernetes Pod with the specified environment variables and settings, follow the solution provided below:
 
-The pod yaml for the given requirements:
+## **Solution**
+
+### **1. Create the Pod Configuration**
+
+Create a YAML configuration file for the pod named `envars` that meets the requirements outlined. Save this YAML configuration to a file named `envars-pod.yaml`.
 
 ```yaml
 apiVersion: v1
@@ -41,50 +45,77 @@ spec:
   containers:
   - image: busybox:latest
     name: fieldref-container
-    command: ["sh","-c"]
+    command: ["sh", "-c"]
     args:
-    - while true; do
-      echo -en '/n';
-                                  printenv NODE_NAME POD_NAME;
-                                  printenv POD_IP POD_SERVICE_ACCOUNT;
-              sleep 10;
-         done;
+    - |
+      while true; do
+        echo -en '/n';
+        printenv NODE_NAME POD_NAME;
+        printenv POD_IP POD_SERVICE_ACCOUNT;
+        sleep 10;
+      done;
     env:
     - name: NODE_NAME
       valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-
+        fieldRef:
+          fieldPath: spec.nodeName
     - name: POD_NAME
-      valueFrom: 
-            fieldRef:
-              fieldPath: metadata.name
-
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
     - name: POD_IP
       valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-
+        fieldRef:
+          fieldPath: status.podIP
     - name: POD_SERVICE_ACCOUNT
       valueFrom:
-            fieldRef:
-              fieldPath: spec.serviceAccountName
+        fieldRef:
+          fieldPath: spec.serviceAccountName
   restartPolicy: Never
 ```
-To check the pod created.
+
+### **2. Apply the YAML File**
+
+Deploy the pod using the `kubectl apply` command:
+
+```bash
+kubectl apply -f envars-pod.yaml
 ```
+
+### **3. Verify the Pod Status**
+
+Check the status of the pod to ensure it's running correctly:
+
+```bash
 kubectl get pods
+```
+
+You should see output similar to:
+
+```
 NAME     READY   STATUS    RESTARTS   AGE
 envars   1/1     Running   0          6s
 ```
-Now we need to check the environment variables in the pod by executing printenv inside the container.
+
+### **4. Check the Environment Variables**
+
+To inspect the environment variables within the running pod, execute the `printenv` command inside the container:
+
+```bash
+kubectl exec -it envars -- sh
 ```
-kubectl exec -it envars sh
+
+Once inside the pod, run:
+
+```sh
+printenv
 ```
-Output:
+
+### **Expected Output**
+
+You should see the environment variables along with other system environment variables:
 
 ```
-/  printenv
 POD_IP=10.244.0.5
 KUBERNETES_SERVICE_PORT=443
 KUBERNETES_PORT=tcp://10.96.0.1:443
@@ -104,3 +135,18 @@ KUBERNETES_SERVICE_PORT_HTTPS=443
 KUBERNETES_SERVICE_HOST=10.96.0.1
 PWD=/
 ```
+
+### **Explanation**
+
+- **Pod Name**: `envars`
+- **Container Name**: `fieldref-container`
+- **Image**: `busybox:latest`
+- **Command**: Executes a shell command that continually prints environment variables every 10 seconds.
+- **Environment Variables**:
+  - `NODE_NAME`: Set to the node name where the pod is running.
+  - `POD_NAME`: Set to the name of the pod.
+  - `POD_IP`: Set to the IP address of the pod.
+  - `POD_SERVICE_ACCOUNT`: Set to the service account name assigned to the pod.
+- **Restart Policy**: Set to `Never` to ensure the pod does not restart automatically.
+
+This setup ensures that the pod continuously prints the environment variables, making it easy to verify their values.
