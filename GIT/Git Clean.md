@@ -32,7 +32,7 @@ Clean the _/usr/src/kodekloudrepos/media_git repository without adding/pushing a
    **Expected Output:**
 
    ```
-           y6328.rpm
+        y6328.rpm
         y646.png
         y6691.int
         y694.org
