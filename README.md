@@ -89,6 +89,8 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 - [Fork a Git Repository](GIT/Fork%20a%20Git%20Repository.md)
 - [Delete Git Branch](GIT/Delete%20Git%20Branch.md)
 - [Clone Git Repository on Storage Server](GIT/Clone%20Git%20Repository%20on%20Storage%20Server.md)
+- [Install and Create Repository](GIT/Git%20Install%20and%20Create%20Repository.md)
+- [Git Create Branches](GIT/Git%20Create%20Branches.md)
 
 </details>
 
