@@ -7,6 +7,7 @@ Welcome to the KodeKloud Engineer Lab Solutions repository! This repository is d
 KodeKloud is an excellent platform for learning DevOps and Cloud technologies through hands-on labs and practical exercises. This repository aims to consolidate solutions and answers for the labs, helping learners understand the concepts better and enhance their problem-solving skills.
 
 ### Labs Covered
+
 ## Docker Labs
 
 <details>
@@ -78,6 +79,14 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 </details>
 
+## Git Labs
+
+<details>
+<summary>Click to expand Git Labs files</summary>
+</details>
+
+</details>
+
 ## Jenkins Labs
 
 <details>
@@ -88,7 +97,6 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 <details>
 <summary>Click to expand Linux Labs files</summary>
-
 
 ## Repository Structure
 
@@ -126,6 +134,7 @@ We welcome contributions from the community! If you would like to contribute:
 ```bash
 git checkout -b feature/your-feature-name
 ```
+
 3. **Add Your Solutions**
 
 4. **Add or update the lab solutions in the relevant folders.**
@@ -136,25 +145,27 @@ git checkout -b feature/your-feature-name
 git add .
 git commit -m "Add/update solutions for [Lab Name]"
 ```
+
 6. **Push Your Changes.**
 
 ```bash
 git push origin feature/your-feature-name
 ```
+
 7. **Create a Pull Request**
 
 Go to the repository on GitHub and create a Pull Request with a clear description of your changes.
 
 ## Guidelines
+
 Ensure that solutions are well-documented and easy to understand.
 Follow the format of existing solution files for consistency.
 Test your solutions before submitting.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-
 ## Acknowledgements
+
 Thanks to the KodeKloud team for providing such valuable hands-on labs, and to the open-source community for their ongoing support.
 
 Happy Learning!
-
