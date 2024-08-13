@@ -79,11 +79,16 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 </details>
 
-## Git Labs
+# Git Labs
 
 <details>
-<summary>Click to expand Git Labs files</summary>
-</details>
+<summary>Click to expand Git Labs </summary>
+
+- [Update Git Repository with Sample HTML File](GIT/Update%20Git%20Repository%20with%20Sample%20HTML%20File.md)
+- [Set Up Git Repository on Storage Server](GIT/Set%20Up%20Git%20Repository%20on%20Storage%20Server.md)
+- [Fork a Git Repository](GIT/Fork%20a%20Git%20Repository.md)
+- [Delete Git Branch](GIT/Delete%20Git%20Branch.md)
+- [Clone Git Repository on Storage Server](GIT/Clone%20Git%20Repository%20on%20Storage%20Server.md)
 
 </details>
 
