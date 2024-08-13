@@ -130,15 +130,14 @@ Look for the stashed changes under _/usr/src/kodekloudrepos/media_ git repositor
    **Expected Output:**
 
    ```
-   Enumerating objects: 4, done.
-
-Counting objects: 100% (4/4), done.
-Delta compression using up to 36 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 319 bytes | 319.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-To /opt/media.git
-   0a8d96c..50e8d5b  master -> master
+    Enumerating objects: 4, done.
+    Counting objects: 100% (4/4), done.
+    Delta compression using up to 36 threads
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (3/3), 319 bytes | 319.00 KiB/s, done.
+    Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+    To /opt/media.git
+    0a8d96c..50e8d5b  master -> master
 
    ```
 
