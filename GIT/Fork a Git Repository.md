@@ -68,7 +68,7 @@ The screenshot highlights the _Fork_ button and confirms that you are forking th
 
 **Screenshot:**
 
-![forked_repo](C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094142.png)
+![forked_repo]("C:\Users\prudh\Pictures\Screenshots\Screenshot 2024-08-13 094142.png")
 
 **Description:**
 The screenshot shows the newly forked repository under Jon’s account. This confirms that the repository has been successfully forked and is available for Jon to work on.
