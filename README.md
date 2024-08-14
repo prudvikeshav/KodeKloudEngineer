@@ -111,6 +111,29 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 <details>
 <summary>Click to expand Ansible Labs files</summary>
+# Ansible Folder
+
+- [Troubleshoot and Create Ansible Playbook](ANSIBLE/Troubleshoot%20and%20Create%20Ansible%20Playbook.md)
+- [Create Ansible Inventory for App Server Testing](ANSIBLE/Create%20Ansible%20Inventory%20for%20App%20Server%20Testing.md)
+- [Configure Default SSH User for Ansible](ANSIBLE/Configure%20Default%20SSH%20User%20for%20Ansible.md)
+- [Copy Data to App Servers using Ansible](ANSIBLE/Copy%20Data%20to%20App%20Servers%20using%20Ansible.md)
+- [Create Files on App Servers using Ansible](ANSIBLE/Create%20Files%20on%20App%20Servers%20using%20Ansible.md)
+- [Ansible Ping Module Usage](ANSIBLE/Ansible%20Ping%20Module%20Usage.md)
+- [Ansible Install Package](ANSIBLE/Ansible%20Install%20Package.md)
+- [Ansible Archive Module](ANSIBLE/Ansible%20Archive%20Module.md)
+- [Ansible Unarchive Module](ANSIBLE/Ansible%20Unarchive%20Module.md)
+- [Ansible Blockinfile Module](ANSIBLE/Ansible%20Blockinfile%20Module.md)
+- [Creating Soft Links Using Ansible](ANSIBLE/Creating%20Soft%20Links%20Using%20Ansible.md)
+- [Managing ACLs Using Ansible](ANSIBLE/Managing%20ACLs%20Using%20Ansible.md)
+- [Ansible Manage Services](ANSIBLE/Ansible%20Manage%20Services.md)
+- [Ansible Lineinfile Module](ANSIBLE/Ansible%20Lineinfile%20Module.md)
+- [Ansible Replace Module](ANSIBLE/Ansible%20Replace%20Module.md)
+- [Ansible Facts Gathering](ANSIBLE/Ansible%20Facts%20Gathering.md)
+- [Ansible Create Users and Groups](ANSIBLE/Ansible%20Create%20Users%20and%20Groups.md)
+- [Managing Jinja2 Templates Using Ansible](ANSIBLE/Managing%20Jinja2%20Templates%20Using%20Ansible.md)
+- [Ansible Setup Httpd and PHP](ANSIBLE/Ansible%20Setup%20Httpd%20and%20PHP.md)
+- [Using Ansible Conditionals](ANSIBLE/Using%20Ansible%20Conditionals.md)
+
 </details>
 
 ## Linux Labs
