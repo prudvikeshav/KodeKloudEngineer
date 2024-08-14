@@ -113,7 +113,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 <summary>Click to expand Ansible Labs files</summary>
 # Ansible Folder
 
-- [Troubleshoot and Create Ansible Playbook](ANSIBLE/Troubleshoot%20and%20Create%20Ansible%20Playbook.md)
+- [Troubleshoot and Create Ansible Playbook](Ansible/Troubleshoot%20and%20Create%20Ansible%20Playbook.md)
 - [Create Ansible Inventory for App Server Testing](ANSIBLE/Create%20Ansible%20Inventory%20for%20App%20Server%20Testing.md)
 - [Configure Default SSH User for Ansible](ANSIBLE/Configure%20Default%20SSH%20User%20for%20Ansible.md)
 - [Copy Data to App Servers using Ansible](ANSIBLE/Copy%20Data%20to%20App%20Servers%20using%20Ansible.md)
