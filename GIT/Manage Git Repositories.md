@@ -16,8 +16,6 @@ Click on the _Gitea UI_ button on the top bar. You should be able to access the 
 
 Note: For these kind of scenarios requiring changes to be done in a web UI, please take screenshots so that you can share it with us for review in case your task is marked incomplete. You may also consider using a screen recording software such as loom.com to record and share your work.
 
-Here’s an enhanced and detailed solution to accomplish the given tasks, including more precise instructions and details for each step:
-
 ## Solution
 
 ### 1. Login to Gitea and Create a New Repository

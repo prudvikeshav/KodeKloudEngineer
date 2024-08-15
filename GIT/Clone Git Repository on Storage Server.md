@@ -6,10 +6,6 @@ The repository to be cloned is located at _/opt/official.git_
 
 Clone this Git repository to the _/usr/src/kodekloudrepos_ directory. Ensure no modifications are made to the repository during the cloning process.
 
-Here's the corrected and enhanced solution for cloning the Git repository, with accurate commands and descriptions:
-
----
-
 ## Solution
 
 ### 1. Login into the Storage Server

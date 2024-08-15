@@ -10,10 +10,6 @@ Once logged in, locate the Git repository named _sarah/story-blog_ and _fork_ it
 
 Note: For tasks requiring web UI changes, screenshots are necessary for review purposes. Additionally, consider utilizing screen recording software such as loom.com to record and share your task completion process.
 
-Here's an enhanced solution with clearer steps and detailed instructions for forking a Git repository using the Gitea UI:
-
----
-
 ## Solution
 
 ### 1. Login to Gitea
@@ -60,6 +56,3 @@ Click the _Fork_ button to initiate the process of creating a copy of the reposi
 **Screenshot:**
 
 ![forked](https://github.com/prudvikeshav/KodekloudEnginner/blob/fb726c18b0ecafbbed1da95b04eb13ea324871a2/GIT/images/forked.png)
-
-**Description:**
-The screenshot shows the newly forked repository under Jon’s account. This confirms that the repository has been successfully forked and is now available for Jon to work on.
