@@ -47,7 +47,7 @@ Create a playbook at `/home/thor/ansible/playbook.yml` to copy the file from the
    vi playbook.yml
    ```
 
-**Add the following content to the playbook file**
+#### **Add the following content to the playbook file**
 
    ```yaml
    ---
