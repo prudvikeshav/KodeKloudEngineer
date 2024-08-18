@@ -1,5 +1,7 @@
 ## Problem Statement
 
+---
+
 The Nautilus DevOps team is testing Ansible playbooks on various servers within their stack. They've placed some playbooks under _/home/thor/playbook/_ directory on the _jump_ host and now intend to test them on _app server 3_ in _Stratos DC_. However, an inventory file needs creation for Ansible to connect to the respective app. Here are the requirements:
 
 - a. Create an _ini_ type Ansible inventory file _/home/thor/playbook/inventory_on _jump host_.

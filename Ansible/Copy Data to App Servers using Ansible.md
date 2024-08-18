@@ -1,4 +1,6 @@
-## Problem statement
+# Problem statement
+
+---
 
 The Nautilus DevOps team needs to copy data from the jump host to all application servers in Stratos DC using Ansible. Execute the task with the following details:
 
@@ -9,6 +11,8 @@ b. Create a playbook _/home/thor/ansible/playbook.yml_ on the _jump host_ to cop
 Note: Validation will run the playbook using the command _ansible-playbook -i inventory playbook.yml_. Ensure the playbook functions properly without any extra arguments.
 
 ## Solution
+
+---
 
 ### 1. Create the Inventory File
 

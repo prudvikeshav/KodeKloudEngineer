@@ -1,5 +1,6 @@
-## Problem Statement
+# Problem Statement
 
+---
 An Ansible playbook needs completion on the jump host, where a team member left off. Below are the details:
 
 The inventory file _/home/thor/ansible/inventory_ requires adjustments. The playbook must run on _App Server 1_ in _Stratos DC_. Update the inventory accordingly.
@@ -10,6 +11,7 @@ Note: Validation will run the playbook using the command ansible-playbook -i inv
 
 ## Solution
 
+---
 First, update the `/home/thor/ansible/inventory` file to include `App Server 1` under the `Stratos DC` group.
 
 ```ini
