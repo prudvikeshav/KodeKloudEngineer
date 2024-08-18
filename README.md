@@ -138,10 +138,7 @@ KodeKloud is an excellent platform for learning DevOps and Cloud technologies th
 
 ## Linux Labs
 
-<details>
-<summary>Click to expand Linux Labs files</summary>
-
-</details>
+<details ><summary> Click to expand Linux Labs files </summary></details>
 
 ## Repository Structure
 
@@ -158,8 +155,10 @@ To get started with this repository:
 1. **Clone the Repository**
 
    ```bash
-   git clone hhttps://github.com/prudvikeshav/KodekloudEngineer
-   cd KodekloudEngineer
+     git clone hhttps://github.com/prudvikeshav/KodekloudEngineer
+     cd KodekloudEngineer
+    ```
+
 2. **Navigate to the Lab Folder**
 
      - Navigate to the specific folder for the lab you are interested in, e.g., docker-labs.
@@ -180,24 +179,24 @@ We welcome contributions from the community! If you would like to contribute:
 git checkout -b feature/your-feature-name
 ```
 
-3. **Add Your Solutions**
+3.**Add Your Solutions**
 
-4. **Add or update the lab solutions in the relevant folders.**
+4.**Add or update the lab solutions in the relevant folders.**
 
-5. **Commit Your Changes**
+5.**Commit Your Changes**
 
 ```bash
 git add .
 git commit -m "Add/update solutions for [Lab Name]"
 ```
 
-6. **Push Your Changes.**
+6.**Push Your Changes.**
 
 ```bash
 git push origin feature/your-feature-name
 ```
 
-7. **Create a Pull Request**
+7.**Create a Pull Request**
 
 Go to the repository on GitHub and create a Pull Request with a clear description of your changes.
 
