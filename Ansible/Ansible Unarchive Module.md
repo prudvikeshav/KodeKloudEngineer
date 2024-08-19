@@ -47,7 +47,7 @@ _Note_: Validation will try to run the playbook using command _ansible-playbook 
 
 4. **Create the Playbook File**
 
-   ```
+   ```plain
    vi playbook.yml
    ```
 
@@ -74,7 +74,7 @@ _Note_: Validation will try to run the playbook using command _ansible-playbook 
 
 6. **Review the Output**
 
-   ```
+   ```plain
    PLAY [all] ******************************************************************************
 
    TASK [Gathering Facts] ******************************************************************
