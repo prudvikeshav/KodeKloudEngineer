@@ -95,7 +95,7 @@ ii. Do not use any custom or empty _marker_ for _blockinfile_ module.
 
 5. **Review the Output**
 
-   ```
+   ```plaintext
    PLAY [all] ******************************************************************************
 
    TASK [Gathering Facts] ******************************************************************
