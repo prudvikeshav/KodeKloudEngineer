@@ -3,23 +3,21 @@
 ---
 One of the DevOps team members has created a zip archive on _jump host_ in Stratos DC that needs to be extracted and copied over to all app servers in Stratos DC itself. Because this is a routine task, the Nautilus DevOps team has suggested automating it. We can use Ansible since we have been using it for other automation tasks. Below you can find more details about the task:
 
-We have an _inventory_ file under _/home/thor/ansible_ directory on _jump host_, which should have all the app servers added already.
+- We have an _inventory_ file under _/home/thor/ansible_ directory on _jump host_, which should have all the app servers added already.
 
-There is a zip archive _/usr/src/data/devops.zip_ on _jump host_.
+- There is a zip archive _/usr/src/data/devops.zip_ on _jump host_.
 
-Create a _playbook.yml_ under _/home/thor/ansible/_ directory on _jump host_ itself to perform the below given tasks.
+- Create a _playbook.yml_ under _/home/thor/ansible/_ directory on _jump host_ itself to perform the below given tasks.
 
-Unzip _/usr/src/data/devops.zip_ archive in _/opt/data/_ location on all app servers.
+- Unzip _/usr/src/data/devops.zip_ archive in _/opt/data/_ location on all app servers.
 
-Make sure the extracted data must has the respective sudo user as their _user_ and _group_ owner, i.e tony for app server 1, steve for app server 2, banner for app server 3.
+- Make sure the extracted data must has the respective sudo user as their _user_ and _group_ owner, i.e tony for app server 1, steve for app server 2, banner for app server 3.
 
-The extracted data permissions must be _0644_.
+- The extracted data permissions must be _0644_.
 
 _Note_: Validation will try to run the playbook using command _ansible-playbook -i inventory playbook.yml_ so please make sure playbook works this way, without passing any extra arguments.
 
 Certainly! Here's the enhanced description for each step of the solution:
-
----
 
 ## Solution
 
@@ -51,8 +49,12 @@ Certainly! Here's the enhanced description for each step of the solution:
 
 4. **Create the Playbook File**
 
+   ```
+   vi playbook.yml
+   ```
+
    ```yaml
-   cat playbook.yml 
+   
    ---
    - hosts: all
      become: yes
