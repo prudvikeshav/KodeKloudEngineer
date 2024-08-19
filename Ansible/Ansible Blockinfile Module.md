@@ -25,8 +25,6 @@ i. Validation will try to run the playbook using command _ansible-playbook -i in
 
 ii. Do not use any custom or empty _marker_ for _blockinfile_ module.
 
-Certainly! Here’s an enhanced step-by-step description for the solution:
-
 ---
 
 ## Solution
