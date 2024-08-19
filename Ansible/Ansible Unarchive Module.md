@@ -17,8 +17,6 @@ One of the DevOps team members has created a zip archive on _jump host_ in Strat
 
 _Note_: Validation will try to run the playbook using command _ansible-playbook -i inventory playbook.yml_ so please make sure playbook works this way, without passing any extra arguments.
 
-Certainly! Here's the enhanced description for each step of the solution:
-
 ## Solution
 
 ---
