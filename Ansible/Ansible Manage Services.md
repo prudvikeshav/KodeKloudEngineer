@@ -46,10 +46,7 @@ _Note_: Validation will try to run playbook using command _ansible-playbook -i i
            enabled: true
    ```
 
-5. **Ensure the user `thor` can run the playbook:**
-   You need to check that the `thor` user has the appropriate permissions to execute Ansible commands and run playbooks. Ensure the user has SSH access to the managed nodes and the necessary Ansible configuration.
-
-6. **Test the playbook:**
+4. **Test the playbook:**
    Execute the following command to run the playbook using the specified inventory file:
 
    ```sh
