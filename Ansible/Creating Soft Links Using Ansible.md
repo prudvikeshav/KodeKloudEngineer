@@ -94,7 +94,8 @@ Note: Validation will try to run the playbook using command _ansible-playbook -i
 
 **Expected Output**
 
-    ```plain
+```plain
+
 PLAY [all] ******************************************************************************
 
 TASK [Gathering Facts] ******************************************************************
@@ -126,4 +127,5 @@ PLAY RECAP *********************************************************************
 stapp01                    : ok=3    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
 stapp02                    : ok=3    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
 stapp03                    : ok=3    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
-    ```
+
+```
