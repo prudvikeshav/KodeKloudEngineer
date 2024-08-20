@@ -33,8 +33,6 @@ Note: Validation will try to run the playbook using command _ansible-playbook -i
 
 2. **Create the Ansible Playbook File**
 
-   Use a text editor to create and edit the `playbook.yml` file.
-
    ```bash
    vi playbook.yml
    ```
