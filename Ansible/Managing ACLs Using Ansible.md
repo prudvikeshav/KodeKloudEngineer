@@ -115,51 +115,6 @@ ansible-playbook -i inventory playbook.yml
 PLAY [all] ******************************************************************************
 
 TASK [Gathering Facts] ******************************************************************
-ok: [stapp01]
-ok: [stapp02]
-ok: [stapp03]
-
-TASK [create  to a file blog.txt.] ******************************************************
-changed: [stapp01]
-changed: [stapp02]
-changed: [stapp03]
-
-TASK [Grant ACL properties to user Tony read access to a file blog.txt] *****************
-skipping: [stapp02]
-skipping: [stapp03]
-ok: [stapp01]
-
-TASK [create  to a file story.txt.] *****************************************************
-changed: [stapp02]
-changed: [stapp01]
-changed: [stapp03]
-
-TASK [Grant ACL properties to usergrpup  Steve readand write  access to a file story.txt.] ***
-skipping: [stapp01]
-skipping: [stapp03]
-changed: [stapp02]
-
-TASK [create  to a file media.txt.] *****************************************************
-changed: [stapp01]
-changed: [stapp02]
-changed: [stapp03]
-
-TASK [Grant ACL properties user Banner read and write  access to a file media.txt.] *****
-skipping: [stapp01]
-skipping: [stapp02]
-changed: [stapp03]
-
-PLAY RECAP ******************************************************************************
-stapp01                    : ok=5    changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
-stapp02                    : ok=5    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
-stapp03                    : ok=5    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
-
-thor@jumphost ~/ansible$ vi playbook.yml
-thor@jumphost ~/ansible$ ansible-playbook -i inventory playbook.yml
-
-PLAY [all] ******************************************************************************
-
-TASK [Gathering Facts] ******************************************************************
 ok: [stapp02]
 ok: [stapp01]
 ok: [stapp03]
