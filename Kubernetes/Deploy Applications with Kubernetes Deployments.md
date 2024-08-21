@@ -1,24 +1,30 @@
-### Problem Statement
+## Problem Statement
 
-#### The Nautilus DevOps team is delving into Kubernetes for app management. One team member needs to create a deployment following these details
+ The Nautilus DevOps team is delving into Kubernetes for app management. One team member needs to create a deployment following these details
 
-#### Create a deployment named nginx to deploy the application nginx using the image nginx:latest (ensure to specify the tag)
+ Create a deployment named nginx to deploy the application nginx using the image *nginx:latest* (ensure to specify the tag)
 
-##### Note: The kubectl utility on jump_host is set up to interact with the Kubernetes cluster
+ Note: The kubectl utility on jump_host is set up to interact with the Kubernetes cluster
 
-### Solution
+## Solution
 
-#### TO Create a deployment in Kubernetes
+### 1. Create the Deployment
+
+To create a deployment in Kubernetes for the nginx application, use the following command:
 
 ```bash
 kubectl create deployment nginx --image=nginx:latest
 ```
 
-#### To check wheather the deployment has been created
+### 2. Verify the Deployment
+
+After creating the deployment, you can check if it has been successfully created and is running:
 
 ```bash
 kubectl get deployments.apps 
 ```
+
+Expected Output:
 
 ```
  NAME    READY   UP-TO-DATE   AVAILABLE   AGE

@@ -1,53 +1,88 @@
-### Problem Statement
 
-#### *The Nautilus DevOps team is testing applications containerization, which is supposed to be migrated on docker container-based environments soon. In today's stand-up meeting one of the team members has been assigned a task to create and test a docker container with certain requirements. Below are more details:*
+## Problem Statement
 
-#### *a. On App Server  3 in Stratos DC pull nginx image (preferably latest tag but others should work too).*
+The Nautilus DevOps team is testing application containerization, with plans to migrate applications to Docker container-based environments soon. In today's stand-up meeting, one of the team members has been assigned the task to:
 
-#### *b. Create a new container with name **official** from the image you just pulled.*
+- Pull the `nginx` Docker image (preferably the latest tag) on App Server 3 in the Stratos Datacenter.
+- Create a new container named `official` from the pulled image.
+- Map the host volume `/opt/itadmin` to the container volume `/usr/src/`.
+- Copy a file named `sample.txt` from `/tmp` to `/opt/itadmin` on the host.
+- Ensure the container is in a running state.
 
-#### *c. Map the host volume **/opt/itadmin** with container volume **/usr/src/**. There is an sample.txt file present on same server under **/tmp**; copy that file to **/opt/itadmin**. Also please keep the container in running state.*
+## Solution
 
-### Solution
+1. **Pull the Docker Image**
 
-#### Docker Pull nginx:latest
+   Start by pulling the `nginx` Docker image. It is preferable to use the `latest` tag, but other tags will work as well.
 
-```bash
-docker pull nginx:latest
-```
+   ```bash
+   docker pull nginx:latest
+   ```
 
-#### TO bind a host volume with container volume  
+   This command downloads the `nginx:latest` image from Docker Hub to App Server 3.
 
-```bash
-docker run -it -d --name official -v /opt/itadmin:/usr/src/ nginx:latest
-```
+2. **Create and Run the Container**
 
-#### TO inspect wheather the binding successful
+   Create a new container named `official` using the pulled `nginx:latest` image. Bind the host volume `/opt/itadmin` to the container volume `/usr/src/` to ensure file sharing between the host and the container.
 
-```bash
-docker inspect 7fcd
+   ```bash
+   docker run -it -d --name official -v /opt/itadmin:/usr/src/ nginx:latest
+   ```
 
-"Mounts": [
-            {
-                "Type": "bind",
-                "Source": "/opt/itadmin",
-                "Destination": "/usr/src",
-                "Mode": "",
-                "RW": true,
-                "Propagation": "rprivate"
-```
+   - `-it` runs the container in interactive mode with a terminal attached.
+   - `-d` runs the container in detached mode (in the background).
+   - `--name official` assigns the name `official` to the container.
+   - `-v /opt/itadmin:/usr/src/` mounts the host directory `/opt/itadmin` to the container directory `/usr/src/`.
 
-#### Copy the sample.txt from /tmp to /opt/itadmin/
+3. **Verify Volume Binding**
 
-```bash
-mv /tmp/sample.txt /opt/itadmin/
-```
+   To check whether the volume binding was successful, inspect the container’s configuration. Look for the volume mounts section in the container details.
 
-#### To check wheather the sample.txt accessable from container volume
+   ```bash
+   docker inspect official
+   ```
 
-```bash
-docker exec -it 7fcd /bin/bash
+   Example output (relevant part):
 
-root@7fcdf15f33d2:/# cat /usr/src/sample.txt 
-This is a sample file!!root@7fcdf15f33d2:/# 
-```
+   ```json
+   "Mounts": [
+       {
+           "Type": "bind",
+           "Source": "/opt/itadmin",
+           "Destination": "/usr/src",
+           "Mode": "",
+           "RW": true,
+           "Propagation": "rprivate"
+       }
+   ]
+   ```
+
+   This output confirms that `/opt/itadmin` on the host is correctly bound to `/usr/src` in the container.
+
+4. **Copy the File to the Host Volume**
+
+   Move the `sample.txt` file from `/tmp` to `/opt/itadmin` on the host. This file will be accessible from within the container through the mounted volume.
+
+   ```bash
+   mv /tmp/sample.txt /opt/itadmin/
+   ```
+
+5. **Verify File Access in the Container**
+
+   To ensure that the `sample.txt` file is accessible within the container, execute a shell in the `official` container and check the file’s contents.
+
+   ```bash
+   docker exec -it official /bin/bash
+   ```
+
+   Inside the container, use the following command to view the file:
+
+   ```bash
+   cat /usr/src/sample.txt
+   ```
+
+   Expected output:
+
+   ```
+   This is a sample file!!
+   ```

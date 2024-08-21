@@ -1,21 +1,32 @@
-**Problem Statement**
+## Problem Statement
 
-#### There is an application that needs to be deployed on Kubernetes cluster under Apache web server. The Nautilus application development team has asked the DevOps team to deploy it. We need to develop a template as per requirements mentioned below
+ There is an application that needs to be deployed on Kubernetes cluster under Apache web server. The Nautilus application development team has asked the DevOps team to deploy it. We need to develop a template as per requirements mentioned below
 
-- #### Create a namespace named as httpd-namespace-nautilus
+- Create a namespace named as *httpd-namespace-nautilus*
 
-- #### Create a deployment named as httpd-deployment-nautilus under newly created namespace. For the deployment use httpd image with latest tag only and remember to mention the tag i.e httpd:latest, and make sure replica counts are 2
+- Create a deployment named as *httpd-deployment-nautilus* under newly created namespace. For the deployment use *httpd* image with latest tag only and remember to mention the tag i.e *httpd:latest*, and make sure replica counts are *2*
 
-- #### Create a service named as httpd-service-nautilus under same namespace to expose the deployment, nodePort should be 30004
+- Create a service named as *httpd-service-nautilus* under same namespace to expose the *deployment*, *nodePort* should be *30004*
 
-**Solution**
+## Solution
 
-#### To create a namespace
+### 1. Create a NameSpace
 
+ To create the namespace where the deployment and service will reside:
+
+```bash
 kubectl create namespace httpd-namespace-nautilus
-namespace/httpd-namespace-nautilus created
+```
 
-#### Deployment with the given details
+This command will create a new namespace called httpd-namespace-nautilus.
+
+```
+namespace/httpd-namespace-nautilus created
+```
+
+### 2. Create a Deployment
+
+Create a Kubernetes Deployment by saving the following YAML configuration to a file named `deployment.yaml`:
 
 ```yaml
 apiVersion: apps/v1
@@ -45,12 +56,16 @@ spec:
 status: {}
 ```
 
-#### Apply the deployment File
+Apply the deployment configuration:
 
+```
 kubectl apply -f deployment.yaml
 deployment.apps/httpd-deployment-nautilus created
+```
 
-#### Create a service with given details
+### 3. Create Service
+
+Save the following YAML configuration to a file named `service.yaml`:
 
 ```yaml
 apiVersion: v1
@@ -75,7 +90,20 @@ status:
   loadBalancer: {}
 ```
 
-#### Apply the Service file
+Details:
+
+- apiVersion: v1: The API version for the Service resource.
+- kind: Service: Specifies the resource type.
+- metadata: Metadata about the Service including name and namespace.
+- spec: Specification of the Service.
+- type: NodePort: Exposes the Service on a static port on each Node.
+- selector: Selects the pods that this Service will route traffic to.
+- ports: Defines the ports configuration.
+- port: Port the service will expose.
+- targetPort: Port on the container to which the traffic will be directed.
+- nodePort: Port on the Node where the Service is exposed.
+
+ Apply the Service file.
 
 ```bash
 kubectl apply -f service.yaml
@@ -85,24 +113,34 @@ kubectl apply -f service.yaml
 service/httpd-service-nautilus created
 ```
 
-#### To check the service created in our namespace
+ To verify the Service and Deployment are correctly set up, use the following commands:
+
+Check Services:
 
 ```bash
 kubectl get svc -n httpd-namespace-nautilus
 ```
+
+Expected Output:
 
 ```
 NAME                     TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 httpd-service-nautilus   NodePort   10.96.14.204   <none>        80:30004/TCP   10s
 ```
 
-#### To check the deployments created
+Check Deployment:
 
 ```bash
 kubectl get deployments.apps -n httpd-namespace-nautilus
 ```
 
+Expected Output:
+
 ```
 NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
 httpd-deployment-nautilus   2/2     2            2           6m37s
 ```
+
+## Summary
+
+This guide walks you through creating a namespace, deploying an Apache HTTP server, and exposing it via a NodePort service on a Kubernetes cluster. It provides the necessary configurations and commands to set up a basic deployment and service, ensuring that the application is accessible externally through the specified port.

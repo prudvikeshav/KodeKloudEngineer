@@ -1,22 +1,22 @@
-**Problem Statement**
+## Problem Statement
 
-#### The Nautilus DevOps team is setting up recurring tasks on different schedules. Currently, they're developing scripts to be executed periodically. To kickstart the process, they're creating cron jobs in the Kubernetes cluster with placeholder commands. Follow the instructions below
+ The Nautilus DevOps team is setting up recurring tasks on different schedules. Currently, they're developing scripts to be executed periodically. To kickstart the process, they're creating cron jobs in the Kubernetes cluster with placeholder commands. Follow the instructions below
 
-- #### Create a cronjob named datacenter
+-  Create a cronjob named *datacenter*
 
-- #### Set Its schedule to something like */10* ** *. You can set any schedule for now
+-  Set Its schedule to something like "*/10 * *" You can set any schedule for now
 
-- ####  Name the container cron-datacenter
+-   Name the container *cron-datacenter*
 
-- #### Utilize the httpd image with latest tag (specify as httpd:latest)
+-  Utilize the *httpd* image with latest tag (specify as httpd:latest)
 
-- #### Execute the dummy command echo Welcome to xfusioncorp
+-  Execute the dummy command echo *Welcome to xfusioncorp*
 
-- #### Ensure the restart policy is OnFailure
+-  Ensure the restart policy is *OnFailure*
 
-**Solution**
+## Solution:
 
-#### TO create a cronjob
+ TO create a cronjob.
 
 ```yaml
 apiVersion: batch/v1
@@ -24,7 +24,7 @@ kind: CronJob
 metadata:
   name: datacenter
 spec:
-  schedule: "*/10 * * * *"
+  schedule: "*/10 * *"
   jobTemplate:
     spec:
       template:
@@ -40,7 +40,7 @@ spec:
           restartPolicy: OnFailure
 ```
 
-#### To check the cron job created
+ To check the cron job created.
 
 ```bash
 kubectl get cronjobs.batch
@@ -48,10 +48,10 @@ kubectl get cronjobs.batch
 
 ```
 NAME         SCHEDULE       SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-datacenter   */10* ** *   False     0        23s             3m41s
+datacenter   */10*  *   False     0        23s             3m41s
 ```
 
-#### To check the jobs created
+ To check the jobs created.
 
 ```bash
 kubectl get jobs.batch --watch
@@ -62,7 +62,7 @@ NAME                  COMPLETIONS   DURATION   AGE
 datacenter-28688660   1/1           11s        7m32s
 ```
 
-#### To check the output of the job
+ To check the output of the job.
 
 ```bash
 kubectl logs datacenter-28688660-qzwkh

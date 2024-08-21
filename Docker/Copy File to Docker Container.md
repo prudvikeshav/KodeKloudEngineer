@@ -1,22 +1,41 @@
-# **Problem Statement:**
 
-## *The Nautilus DevOps team possesses confidential data on App Server 3 in the Stratos Datacenter. A container named ubuntu_latest is running on the same server.*
+## Problem Statement
 
-### *Copy an encrypted file /tmp/nautilus.txt.gpg from the docker host to the ubuntu_latest container located at /tmp/. Ensure the file is not modified during this operation.*
+The Nautilus DevOps team has confidential data on App Server 3 in the Stratos Datacenter. A container named _ubuntu_latest_ is running on the same server. Your task is to copy an encrypted file _/tmp/nautilus.txt.gpg_ from the Docker host to the _ubuntu_latest_ container, placing it in the _/tmp/_ directory. It is crucial to ensure that the file remains unchanged during this transfer process.
 
-# **Solution:**
+## Solution
 
-### Copy file from local to container
+To achieve this, follow these steps:
 
-```bash
-docker cp /tmp/nautilus.txt.gpg ubuntu_latest:/tmp
-```
+1. **Copy the File from the Docker Host to the Container**
 
-### To check the file copied or not
+   Use the `docker cp` command to transfer the encrypted file from the Docker host to the specified path in the _ubuntu_latest_ container. This command ensures that the file is copied directly and accurately without any modifications.
 
-```bash
-[root@stapp03 banner]# docker exec -it ubuntu_latest /bin/bash
-root@ae63fa4f5a07:/# cd /tmp/
-root@ae63fa4f5a07:/tmp# ls
-nautilus.txt.gpg
-```
+   ```bash
+   docker cp /tmp/nautilus.txt.gpg ubuntu_latest:/tmp
+   ```
+
+2. **Verify the File Transfer**
+
+   After copying the file, you can confirm its presence and ensure the transfer was successful by accessing the container and listing the contents of the target directory. Use the `docker exec` command to open an interactive bash shell inside the container.
+
+   ```bash
+   docker exec -it ubuntu_latest /bin/bash
+   ```
+
+   Once inside the container, navigate to the _/tmp/_ directory and check for the presence of the file:
+
+   ```bash
+   cd /tmp/
+   ls
+   ```
+
+   Expected output:
+
+   ```
+   nautilus.txt.gpg
+   ```
+
+   This output confirms that the file _nautilus.txt.gpg_ has been successfully copied to the container and is located in the specified directory.
+
+---

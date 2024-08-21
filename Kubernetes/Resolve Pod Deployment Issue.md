@@ -1,31 +1,31 @@
-**Problem Statement**
+## Problem Statement
 
-#### A junior DevOps team member encountered difficulties deploying a stack on the Kubernetes cluster. The pod fails to start, presenting errors. Let's troubleshoot and rectify the issue promptly
+A junior DevOps team member encountered difficulties deploying a stack on the Kubernetes cluster. The pod fails to start, presenting errors. Let's troubleshoot and rectify the issue promptly.
 
-#### There is a pod named webserver, and the container within it is named httpd-container, its utilizing the httpd:latest image
+- There is a pod named *webserver*, and the container within it is named *httpd-container*, which utilizes the *httpd:latest* image.
+- Additionally, there's a sidecar container named *sidecar-container* using the *ubuntu:latest* image.
 
-#### Additionally, there's a sidecar container named sidecar-container using the ubuntu:latest image
+Identify and address the issue to ensure the pod is running and the application is accessible.
 
-#### Identify and address the issue to ensure the pod is in the running state and the application is accessible
+## Solution
 
-**Solution**
+First, we need to check if the pod is running.
 
-#### Check the pods running
-
-thor@jumphost ~$ kubectl get pods
+```
+kubectl get pods
 NAME        READY   STATUS             RESTARTS   AGE
 webserver   1/2     ImagePullBackOff   0          89s
+```
 
-#### Here we can see the pod is not running Status was ImagePullBackOff. There are two possiblities
+Here, we can see that the pod is not fully operational. The status is `ImagePullBackOff`, indicating that there is an issue with pulling the container image. There are two possible reasons for this:
 
-#### 1. Wrong image name
+1. The image name is incorrect.
+2. The image is not available in the specified repository.
 
-#### 2. image was not present
-
-#### Now we should see the complete details of pod wedserver
+To diagnose the issue further, we need to look at the detailed status of the *webserver* pod.
 
 ```json
-thor@jumphost ~$ kubectl describe pod webserver 
+~$ kubectl describe pod webserver 
 Name:             webserver
 Namespace:        default
 Priority:         0
@@ -107,17 +107,21 @@ Events:
   Warning  Failed     18s (x6 over 99s)   kubelet            Error: ImagePullBackOff
 ```
 
-#### We can clearly in the log that image name was specified wrong **httpd:latests** insted of **httpd:latest**. We should edit the pod and modify the image name
+From the logs, we can see that the image name `httpd:latests` is incorrect; it should be `httpd:latest`. This is causing the `ImagePullBackOff` error because Kubernetes is unable to find the image `httpd:latests`.
+
+To fix this, we need to edit the pod and correct the image name.
 
 ```bash
-thor@jumphost ~$ kubectl edit pod webserver
+~$ kubectl edit pod webserver
 pod/webserver edited
 ```
 
-#### Check the pod is running or not
+After editing the pod and correcting the image name, we should verify if the pod is now running.
 
 ```bash
-thor@jumphost ~$ kubectl get pod
+~$ kubectl get pod
 NAME        READY   STATUS    RESTARTS      AGE
 webserver   2/2     Running   1 (28s ago)   11m
 ```
+
+As seen above, the pod is now running correctly with both containers in a `READY` state. This indicates that the issue was successfully resolved, and the application should be accessible as intended.

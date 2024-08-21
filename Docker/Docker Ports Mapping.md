@@ -1,23 +1,47 @@
-### Problem Statement
+## Problem Statement
 
-#### *The Nautilus DevOps team is planning to host an application on a nginx-based container. There are number of tickets already been created for similar tasks. One of the tickets has been assigned to set up a nginx container on Application Server 3 in Stratos Datacenter. Please perform the task as per details mentioned below*
+The Nautilus DevOps team is preparing to host an application using an `nginx`-based container. A ticket has been assigned to set up an `nginx` container on Application Server 3 in the Stratos Datacenter. The specific tasks are as follows:
 
-#### *a. Pull nginx:alpine-perl docker image on Application Server 3.*
+- **Pull the `nginx:alpine-perl` Docker image** on Application Server 3.
+- **Create a container named `demo`** using the pulled image.
+- **Map the host port `8089`** to the container port `80`.
+- Ensure that the container is running at the end of the setup.
 
-#### *b. Create a container named demo using the image you pulled.*
+## Solution
 
-#### *c. Map host port 8089 to container port 80. Please keep the container in running state.*
+Follow these steps to complete the setup:
 
-### Solution
+1. **Pull the Docker Image**
 
-#### Docker pull image nginx:alpine-perl
+   First, pull the `nginx:alpine-perl` image from the Docker repository. This image includes `nginx` with Perl support and is based on the Alpine Linux distribution.
 
-```bash
-docker pull nginx:alpine-perl
-```
+   ```bash
+   docker pull nginx:alpine-perl
+   ```
 
-#### Docker conatiner demo with hostport 8089, container port 80
+   This command downloads the image to your local Docker environment on Application Server 3.
 
-```bash
- docker run -d -it --name=demo -p 8089:80 nginx:alpine-perl
- ```
+2. **Create and Run the Container**
+
+   Next, create and run a new container named `demo` using the `nginx:alpine-perl` image. Map the host port `8089` to the container port `80` to make the web service accessible on port `8089` of the host.
+
+   ```bash
+   docker run -d -it --name=demo -p 8089:80 nginx:alpine-perl
+   ```
+
+   In this command:
+   - `-d` runs the container in detached mode, so it operates in the background.
+   - `-it` allows for interactive terminal access if needed.
+   - `--name=demo` assigns the name `demo` to the container.
+   - `-p 8089:80` maps port `8089` on the host to port `80` inside the container, enabling access to the `nginx` web server from the host’s port `8089`.
+   - `nginx:alpine-perl` specifies the image to use for creating the container.
+
+3. **Verify the Container is Running**
+
+   After running the container, confirm that it is up and running by listing all active containers:
+
+   ```bash
+   docker container ls
+   ```
+
+   Look for the `demo` container in the output to ensure it is in a running state.
