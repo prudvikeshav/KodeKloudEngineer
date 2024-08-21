@@ -11,7 +11,7 @@ b. Assign a unique UID _1321_ and designate the home directory as _/var/www/john
 
 ## Solution
 
-Here's an enhanced description of the solution for creating a custom Apache user with specific requirements on an application server:
+
 
 ### Steps to Create and Configure the User
 
