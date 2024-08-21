@@ -78,6 +78,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 - [🔗 Configure Nginx + PHP-FPM Using Unix Sock](Linux/Configure%20Nginx%20%2B%20PHP-FPM%20Using%20Unix%20Sock.md)
 
 </details>
+
 ---
 
 ## 🔄Git Labs
@@ -107,6 +108,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 - [⚙️ Git Setup from Scratch](GIT/Git%20Setup%20from%20Scratch.md)
 
 </details>
+
 ---
 
 ## 🔧Ansible Labs
@@ -136,6 +138,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 - [🔄 Using Ansible Conditionals](Ansible/Using%20Ansible%20Conditionals.md)
 
 </details>
+
 ---
 
 ## 🐳Docker Labs
@@ -160,6 +163,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 - [📜 Write a Docker File](Docker/Write%20a%20Docker%20File.md)
 
 </details>
+
 ---
 
 ## ☸ Kubernetes Labs
