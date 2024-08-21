@@ -76,7 +76,7 @@ Note: Validation will try to run the playbook using command _ansible-playbook -i
            create: yes
    ```
 
-5. **Run the Playbook**
+5.**Run the Playbook**
 
    Execute the following command to run the playbook using the inventory file:
 
@@ -88,7 +88,7 @@ Note: Validation will try to run the playbook using command _ansible-playbook -i
 
 Upon running the playbook, you should see output similar to the following:
 
-```
+```plain
 PLAY [all] ******************************************************************************
 
 TASK [Gathering Facts] ******************************************************************
