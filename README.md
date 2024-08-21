@@ -79,6 +79,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 
 </details>
 ---
+
 ## 🔄Git Labs
 
 <details>
@@ -107,11 +108,11 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 
 </details>
 ---
+
 ## 🔧Ansible Labs
 
 <details>
 <summary>Click to expand 🔧Ansible Labs Tasks</summary>
-# Ansible Folder
 
 - [🔧 Troubleshoot and Create Ansible Playbook](Ansible/Troubleshoot%20and%20Create%20Ansible%20Playbook.md)
 - [📦 Create Ansible Inventory for App Server Testing](Ansible/Create%20Ansible%20Inventory%20for%20App%20Server%20Testing.md)
@@ -136,6 +137,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 
 </details>
 ---
+
 ## 🐳Docker Labs
 
 <details>
@@ -159,6 +161,7 @@ KodeKloud offers an excellent platform for mastering DevOps and Cloud technologi
 
 </details>
 ---
+
 ## ☸ Kubernetes Labs
 
 <details>
