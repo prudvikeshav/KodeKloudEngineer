@@ -37,4 +37,8 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
    ```bash
        cat /etc/passwd | grep mariyam
    ```
+    Output should be:
 
+```
+mariyam:x:1002:1002::/home/mariyam:/bin/bash
+```
