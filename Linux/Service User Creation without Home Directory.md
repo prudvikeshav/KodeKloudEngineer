@@ -2,8 +2,7 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
 
 - Create a user named _mariyam_ in _App Server 2_ without a home directory.
 
-
-## Solution:
+## Solution
 
 1. **SSH into the Server and Switch to Root:**
 
@@ -27,17 +26,18 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
    ```
 
    Output should be:
+
      ```
       uid=1002(mariyam) gid=1002(mariyam) groups=1002(mariyam)
      ```
-
 
 4. **Verify User's Entry in `/etc/passwd`:**
    - Check the `/etc/passwd` file to ensure the user's home directory is not set.
 
    ```bash
-   cat /etc/passwd | grep mariyam
+       cat /etc/passwd | grep mariyam
    ```
+
        Output should be:
 
     ```
