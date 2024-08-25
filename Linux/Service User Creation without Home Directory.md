@@ -2,7 +2,6 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
 
 - Create a user named _mariyam_ in _App Server 2_ without a home directory.
 
-It seems like there's an issue with creating a user account without a home directory. The `useradd` command you used with the `--no-create-home` option is not producing the expected result. Let's resolve this by making sure the user is created correctly without a home directory.
 
 ## Solution:
 
@@ -39,7 +38,8 @@ It seems like there's an issue with creating a user account without a home direc
    ```bash
    cat /etc/passwd | grep mariyam
    ```
-   Output should be:
+       Output should be:
+
     ```
-  mariyam:x:1002:1002::/home/mariyam:/bin/bash
+      mariyam:x:1002:1002::/home/mariyam:/bin/bash
     ```
