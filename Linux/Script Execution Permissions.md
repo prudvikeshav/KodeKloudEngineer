@@ -63,5 +63,3 @@ Run the script to ensure it works as expected.
 . /tmp/xfusioncorp.sh
 ```
 
-- **Explanation**: This command executes the script. You should see the output indicating that the script has run successfully.
-
