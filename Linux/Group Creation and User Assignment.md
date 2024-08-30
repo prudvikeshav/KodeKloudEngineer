@@ -1,5 +1,8 @@
 # Problem Statement
 
+<<<<<<< HEAD
+---
+=======
 The system admin team at xFusionCorp Industries has streamlined access management by implementing group-based access control. Here's what you need to do:
 
 a. Create a group named *nautilus_admin_users* across all App servers within the Stratos Datacenter.
@@ -57,3 +60,4 @@ b. Add the user *rajesh* into the *nautilus_admin_users* group on all App server
    ```plain
    uid=1002(rajesh) gid=1002(nautilus_admin_users) groups=1002(nautilus_admin_users)
    ```
+>>>>>>> f7c7fd80adeddf656cceb259d6504524031032d5

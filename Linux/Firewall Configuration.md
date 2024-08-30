@@ -50,6 +50,6 @@ Allow all incoming connections on port *8084/tcp*. Ensure the zone is set to *pu
    sudo firewall-cmd --get-active-zones
    ```
 
-   - Verifies that the public zone is active and applied to the network interfaces.
+
 
 ---
