@@ -1,4 +1,4 @@
-## Problem Statement
+# Problem Statement
 
  The Nautilus DevOps team is establishing a ReplicationController to deploy multiple pods for hosting applications that require a highly available infrastructure. Follow the specifications below to create the ReplicationController
 
@@ -48,7 +48,7 @@ kubectl apply -f replication.yaml
 
 Expected Output:
 
-```
+```plain
 replicationcontroller/nginx-replicationcontroller created
 ```
 
@@ -64,7 +64,7 @@ kubectl get replicationcontrollers
 
 Expected Output:
 
-```
+```plain
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-replicationcontroller   3         3         3       37s
 ```
@@ -108,7 +108,3 @@ Events:
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-5xnrp
   Normal  SuccessfulCreate  51s   replication-controller  Created pod: nginx-replicationcontroller-l6z6p
 ```
-
-### Summary
-
-This solution demonstrates how to create and verify a ReplicationController in Kubernetes to manage a set of nginx pods. The detailed steps include creating a YAML manifest, applying it to create the ReplicationController, and verifying that it is functioning as expected by checking the status and details of the ReplicationController and its managed pods.

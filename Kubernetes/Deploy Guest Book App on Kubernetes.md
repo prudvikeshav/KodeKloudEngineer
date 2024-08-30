@@ -1,4 +1,4 @@
-## Problem Statement
+# Problem Statement
 
 The Nautilus Application development team has finished development of one of the applications and it is ready for deployment. It is a guestbook application that will be used to manage entries for guests/visitors. As per discussion with the DevOps team, they have finalized the infrastructure that will be deployed on Kubernetes cluster. Below you can find more details about it.
 
@@ -168,7 +168,7 @@ kubectl apply -f backend.yaml
 
 Expected Output:
 
-```
+```plain
 deployment.apps/redis-master created
 service/redis-master created
 deployment.apps/redis-slave created
@@ -244,7 +244,7 @@ kubectl apply -f frontend.yaml
 
 Expected output:
 
-```
+```plain
 deployment.apps/frontend created
 service/frontend created
 ```
@@ -259,7 +259,7 @@ kubectl get all
 
 Output:
 
-```
+```plain
 NAME                                READY   STATUS    RESTARTS   AGE
 pod/frontend-75d9985df9-685dp       1/1     Running   0          19s
 pod/frontend-75d9985df9-hsmhf       1/1     Running   0          19s
@@ -300,6 +300,3 @@ Access the App: Open a web browser and go to http://<node-ip>:30009, where <node
 
 Check Application: Verify that the guestbook application is running and accessible.
 
-### Summary
-
-This solution outlines the steps to deploy a guestbook application with Redis master and slave tiers on Kubernetes, along with a frontend tier. It includes creating deployments and services for each component, verifying their status, and accessing the application via a NodePort service.

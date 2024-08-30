@@ -1,4 +1,4 @@
-## Problem Statement
+# Problem Statement
 
  The Nautilus DevOps team is delving into Kubernetes for app management. One team member needs to create a deployment following these details
 
@@ -26,7 +26,7 @@ kubectl get deployments.apps
 
 Expected Output:
 
-```
+```plain
  NAME    READY   UP-TO-DATE   AVAILABLE   AGE
  nginx   1/1     1            1           10s
 ```

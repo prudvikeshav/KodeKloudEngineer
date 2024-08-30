@@ -1,5 +1,6 @@
-## Problem Statement
+# Problem Statement
 
+---
  There is an application that needs to be deployed on Kubernetes cluster under Apache web server. The Nautilus application development team has asked the DevOps team to deploy it. We need to develop a template as per requirements mentioned below
 
 - Create a namespace named as *httpd-namespace-nautilus*
@@ -20,7 +21,7 @@ kubectl create namespace httpd-namespace-nautilus
 
 This command will create a new namespace called httpd-namespace-nautilus.
 
-```
+```plain
 namespace/httpd-namespace-nautilus created
 ```
 
@@ -58,7 +59,7 @@ status: {}
 
 Apply the deployment configuration:
 
-```
+```plain
 kubectl apply -f deployment.yaml
 deployment.apps/httpd-deployment-nautilus created
 ```
@@ -109,7 +110,7 @@ Details:
 kubectl apply -f service.yaml
 ```
 
-```
+```plain
 service/httpd-service-nautilus created
 ```
 
@@ -123,7 +124,7 @@ kubectl get svc -n httpd-namespace-nautilus
 
 Expected Output:
 
-```
+```plain
 NAME                     TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 httpd-service-nautilus   NodePort   10.96.14.204   <none>        80:30004/TCP   10s
 ```
@@ -136,11 +137,7 @@ kubectl get deployments.apps -n httpd-namespace-nautilus
 
 Expected Output:
 
-```
+```plain
 NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
 httpd-deployment-nautilus   2/2     2            2           6m37s
 ```
-
-## Summary
-
-This guide walks you through creating a namespace, deploying an Apache HTTP server, and exposing it via a NodePort service on a Kubernetes cluster. It provides the necessary configurations and commands to set up a basic deployment and service, ensuring that the application is accessible externally through the specified port.

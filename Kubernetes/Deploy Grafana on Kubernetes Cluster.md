@@ -1,4 +1,4 @@
-## Problem Statement
+# Problem Statement
 
  The Nautilus DevOps teams is planning to set up a Grafana tool to collect and analyze analytics from some applications. They are planning to deploy it on Kubernetes cluster. Below you can find more details
 
@@ -26,7 +26,7 @@ kubectl get pods
 
 Expected Output:
 
-```
+```plain
 NAME                                       READY   STATUS    RESTARTS   AGE
 grafana-deployment-devops-9b97dff6-kjxf2   1/1     Running   0          25s
 ```
@@ -41,7 +41,7 @@ kubectl create svc nodeport grafana-service-devops --tcp=80:3000
 
 Expected Output:
 
-```
+```plain
 service/grafana-service-devops created
 ```
 
@@ -55,7 +55,7 @@ kubectl get svc
 
 Expected Output:
 
-```
+```plain
 NAME                     TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 grafana-service-devops   NodePort    10.96.158.245   <none>        80:32000/TCP   77s
 kubernetes               ClusterIP   10.96.0.1       <none>        443/TCP        72m
@@ -71,7 +71,7 @@ kubectl describe svc grafana-service-devops
 
 Expected Output:
 
-```
+```plain
 Name:                     grafana-service-devops
 Namespace:                default
 Labels:                   app=grafana-service-devops

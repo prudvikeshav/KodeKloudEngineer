@@ -1,5 +1,5 @@
 
-## Problem Statement
+# Problem Statement
 
  The Nautilus DevOps team is crafting jobs in the Kubernetes cluster. While they're developing actual scripts/commands, they're currently setting up templates and testing jobs with dummy commands. Please create a job template as per details given below
 
@@ -59,7 +59,7 @@ kubectl get jobs.batch
 
 Expected Output:
 
-```
+```plain
 NAME               COMPLETIONS   DURATION   AGE
 countdown-devops   0/1           9s         9s
 ```
