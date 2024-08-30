@@ -1,5 +1,4 @@
 
-
 # Problem Statement
 
 In response to heightened security concerns, the xFusionCorp Industries security team has opted for custom Apache users for their web applications. Each user is tailored specifically for an application, enhancing security measures. Your task is to create a custom Apache user according to the outlined specifications:
@@ -11,8 +10,6 @@ b. Assign a unique UID _1321_ and designate the home directory as _/var/www/john
 ---
 
 ## Solution
-
-
 
 ### Steps to Create and Configure the User
 
@@ -61,7 +58,7 @@ b. Assign a unique UID _1321_ and designate the home directory as _/var/www/john
 
    You should see an output similar to:
 
-   ```
+   ```plain
    john:x:1321:1321::/var/www/john:/bin/bash
    ```
 
@@ -71,4 +68,3 @@ b. Assign a unique UID _1321_ and designate the home directory as _/var/www/john
    - `1321` is the UID and GID (group ID).
    - `/var/www/john` is the home directory.
    - `/bin/bash` is the default shell.
-
