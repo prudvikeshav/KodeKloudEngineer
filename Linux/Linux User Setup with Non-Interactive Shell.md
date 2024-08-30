@@ -44,7 +44,7 @@ Create a user named _james_ with a _non-interactive shell_ on _App Server 2_.
 
    You should see output similar to:
 
-   ```
+   ```plain
    uid=1002(james) gid=1002(james) groups=1002(james)
    ```
 
@@ -56,6 +56,6 @@ Create a user named _james_ with a _non-interactive shell_ on _App Server 2_.
 
    The output should be:
 
-   ```
+   ```plain
    james:x:1002:1002::/home/james:/sbin/nologin
    ```
