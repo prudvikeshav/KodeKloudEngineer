@@ -1,12 +1,10 @@
 # Problem Statement
+
 Within the Stratos DC, the backup server holds template XML files crucial for the Nautilus application. Before utilization, these files require valid data insertion. As part of routine maintenance, system admins at xFusionCorp Industries employ string and file manipulation commands.
 
 Your task is to substitute all occurrences of the string *Random* with *Cloud* within the XML file located at */root/nautilus.xml* on the backup server.
 
-solution:
-
-
-### Summary of Enhanced Commands
+## Solution
 
 1. **Connect to the server:**
 
@@ -25,8 +23,10 @@ solution:
    ```bash
    cat /root/nautilus.xml | grep 'Random' | wc -l
    ```
+
    OutPut:
-   ```
+
+   ```plain
    66
    ```
 
@@ -47,16 +47,21 @@ solution:
    ```bash
    cat /root/nautilus.xml | grep 'Random' | wc -l
    ```
+
     OutPut:
-    ```
+
+    ```plain
     0
     ```
+
 7. **Verify the number of `Cloud` strings:**
 
    ```bash
    cat /root/nautilus.xml | grep 'Cloud' | wc -l
    ```
+
     Output:
-    ```
+
+    ```plain
     66
     ```

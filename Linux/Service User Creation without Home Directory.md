@@ -1,3 +1,6 @@
+# Problem Statement
+
+---
 In response to the latest tool implementation at xFusionCorp Industries, the system admins require the creation of a service user account. Here are the specifics:
 
 - Create a user named _mariyam_ in _App Server 2_ without a home directory.
@@ -27,7 +30,7 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
 
    Output should be:
 
-     ```
+     ```plain
       uid=1002(mariyam) gid=1002(mariyam) groups=1002(mariyam)
      ```
 
@@ -37,8 +40,9 @@ In response to the latest tool implementation at xFusionCorp Industries, the sys
    ```bash
        cat /etc/passwd | grep mariyam
    ```
+
     Output should be:
 
-   ```
+   ```plain
     mariyam:x:1002:1002::/home/mariyam:/bin/bash
    ```

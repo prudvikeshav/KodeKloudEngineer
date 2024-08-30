@@ -40,7 +40,7 @@ Synchronize the timezone settings to match the local datacenter's timezone (*Ame
 
    You should see an output similar to this:
 
-   ```
+   ```plain
    Local time: Tue 2024-08-27 09:33:23 -03
    Universal time: Tue 2024-08-27 12:33:23 UTC
    RTC time: n/a

@@ -1,12 +1,12 @@
 # Problem Statement
+
 A Nautilus developer has stored confidential data on the jump host within Stratos DC. To ensure security and compliance, this data must be transferred to one of the app servers. Given developers lack direct access to these servers, the system admin team has been enlisted for assistance.
 
 Copy */tmp/nautilus.txt.gpg* file from jump server to *App Server 3* placing it in the directory */home/opt*.
 
 ## Solution
 
-
-#### **1. Transfer the File Using `scp`**
+### **1. Transfer the File Using `scp`**
 
 Log in to the jump host and use `scp` to copy the file to `App Server 3`. Make sure to replace the placeholders with the actual usernames, hostnames, and paths:
 
@@ -24,7 +24,6 @@ scp /tmp/nautilus.txt.gpg banner@stapp03:/home/opt
 ```plaintext
 nautilus.txt.gpg                                       100%  105   148.7KB/s   00:00
 ```
-
 
 #### **2. Verify the File Transfer on `App Server 3`**
 
