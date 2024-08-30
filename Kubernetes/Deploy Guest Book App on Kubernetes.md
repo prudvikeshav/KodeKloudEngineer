@@ -295,8 +295,3 @@ Obtain Node IP: Get the IP address of any Kubernetes node. This can be done thro
 ```bash
 kubectl get nodes -o wide
 ```
-
-Access the App: Open a web browser and go to http://<node-ip>:30009, where <node-ip> is the IP address of your Kubernetes node.
-
-Check Application: Verify that the guestbook application is running and accessible.
-

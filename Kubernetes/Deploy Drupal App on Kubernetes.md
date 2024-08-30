@@ -1,4 +1,4 @@
-## Problem statement
+# Problem statement
 
 We need to deploy a Drupal application on Kubernetes cluster. The Nautilus application development team want to setup a fresh Drupal as they will do the installation on their own. Below you can find the requirements, they have shared with us.
 
@@ -213,7 +213,7 @@ kubectl apply -f drupal.yaml
 
 Output:
 
-```
+```plain
 persistentvolumeclaim/drupal-mysql-pvc created
 persistentvolume/drupal-mysql-pv created
 deployment.apps/drupal-mysql created
