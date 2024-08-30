@@ -1,10 +1,10 @@
 # Problem Statement
+
 With the installation of new tools on the app servers within the Stratos Datacenter, certain functionalities now necessitate graphical user interface (GUI) access.
 
 Adjust the default runlevel on all App servers in Stratos Datacenter to enable GUI booting by default. It's imperative not to initiate a server reboot after completing this task.
 
-## Solution:
-
+## Solution
 
 1. **SSH into the First Server**
 
@@ -28,8 +28,6 @@ Adjust the default runlevel on all App servers in Stratos Datacenter to enable G
    systemctl get-default
    ```
 
- 
-
 4. **Change the Default Target to Graphical**
 
    If the current default target is not `graphical.target`, set it as the default:
@@ -40,11 +38,9 @@ Adjust the default runlevel on all App servers in Stratos Datacenter to enable G
 
    You should see a message like:
 
-   ```
+   ```plain
    Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/graphical.target.
    ```
-
-
 
 5 . **Repeat for the Remaining Servers**
 
@@ -60,5 +56,3 @@ Adjust the default runlevel on all App servers in Stratos Datacenter to enable G
    exit
    exit
    ```
-
-  

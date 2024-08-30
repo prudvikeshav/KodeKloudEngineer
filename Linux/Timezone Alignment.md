@@ -58,6 +58,6 @@ Synchronize the timezone settings to match the local datacenter's timezone (*Ame
    exit
    ```
 
-7. **Repeat for All Servers**
+6. **Repeat for All Servers**
 
    Perform the above steps on all relevant servers (e.g., `stapp02`, `stapp03`). Ensure that each server has the timezone set to `America/Argentina/Ushuaia`.
