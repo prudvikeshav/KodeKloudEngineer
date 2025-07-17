@@ -66,7 +66,6 @@ terraform apply --auto-approve
 ```
 *Check Output*
 
-After successful execution, the output should display:
 
 ```bash
 key_pair_name = "datacenter-kp"
