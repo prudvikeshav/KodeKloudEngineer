@@ -1,16 +1,18 @@
-📌 Problem Statement
+📌 **Problem Statement**:
+
 The Nautilus DevOps team is preparing for a phased migration of their infrastructure to AWS Cloud. To ensure a smooth and controlled transition, they are breaking the migration into smaller tasks.
 
 As part of this effort, the team needs to create an RSA key pair to securely manage access to EC2 instances. The private key should be saved on the local machine, and the public key uploaded to AWS as a key pair.
 
-✅ Requirements
-Key Pair Name: datacenter-kp
+✅ **Requirements:**
 
-Key Algorithm: RSA
+*Key Pair Name: datacenter-kp*
 
-Key Size: 4096 bits
+*Key Algorithm: RSA*
 
-Private Key Location: /home/bob/datacenter-kp.pem
+*Key Size: 4096 bits*
+
+*Private Key Location: /home/bob/datacenter-kp.pem*
 
 
 **Solution**
@@ -41,28 +43,28 @@ output "key_pair_name" {
   value = aws_key_pair.datacenter.key_name
 }
 ```
-Initialize Terraform
+*Initialize Terraform*
 
 ```bash
 terraform init
 ```
-Validate the Configuration
+*Validate the Configuration*
 
 ```bash
 terraform validate
 ```
-Review the Execution Plan
+*Review the Execution Plan*
 
 ```bash
 terraform plan
 ```
-Apply the Configuration
+*Apply the Configuration*
 
 ```bash
 
 terraform apply --auto-approve
 ```
-Check Output
+*Check Output*
 
 After successful execution, the output should display:
 
