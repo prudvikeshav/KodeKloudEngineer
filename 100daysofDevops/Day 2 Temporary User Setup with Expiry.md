@@ -24,20 +24,20 @@ Rose needs temporary access to `stapp02` for development work. The DevOps team m
 ssh steve@stapp02
 ```
 
-2. Create the User with Expiry
+### 2. Create the User with Expiry
 ```bash
 sudo useradd rose -e 2024-04-15
 ```
-The -e flag sets the account expiration date.
+#### The -e flag sets the account expiration date.
 
 ```bash
 sudo passwd rose
 ```
-3. Verify User Configuration
+### 3. Verify User Configuration
 ```bash
 sudo chage -l rose
 ```
-Sample Output:
+#### Sample Output:
 ```bash
 Last password change                                    : Jul 18, 2025
 Password expires                                        : never
