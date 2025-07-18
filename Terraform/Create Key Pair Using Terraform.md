@@ -1,21 +1,35 @@
-### 📌 Problem Statement:
+# 🔑 AWS EC2 Key Pair Creation for Migration (RSA)
 
-The Nautilus DevOps team is preparing for a phased migration of their infrastructure to AWS Cloud. To ensure a smooth and controlled transition, they are breaking the migration into smaller tasks.
+## 📌 Overview
 
-As part of this effort, the team needs to create an RSA key pair to securely manage access to EC2 instances. The private key should be saved on the local machine, and the public key uploaded to AWS as a key pair.
+As part of the phased migration to AWS Cloud, the **Nautilus DevOps team** needs to securely manage access to EC2 instances. This involves generating an **RSA key pair**, where the private key is stored locally, and the public key is uploaded to AWS as a key pair for EC2 access.
 
-### ✅ Requirements:
+---
 
-Key Pair Name: datacenter-kp
+## 🧩 Problem Statement
 
-Key Algorithm: RSA
+To ensure secure and controlled access to EC2 instances during the migration, the team needs to:
 
-Key Size: 4096 bits
+- **Create an RSA key pair** with a **key size of 4096 bits**.
+- Store the **private key** on the local machine at `/home/bob/datacenter-kp.pem`.
+- Upload the **public key** to AWS as a key pair for EC2 access.
 
-Private Key Location: /home/bob/datacenter-kp.pem
+---
 
+## ✅ Requirements
 
-### Solution:
+- **Key Pair Name**: `datacenter-kp`
+- **Key Algorithm**: `RSA`
+- **Key Size**: `4096 bits`
+- **Private Key Location**: `/home/bob/datacenter-kp.pem`
+
+---
+
+## 💡 Solution
+
+This solution uses **Terraform** to automate the creation of the RSA key pair, upload the public key to AWS, and save the private key locally.
+
+### Terraform Configuration
 
 ```hcl
 
@@ -42,31 +56,45 @@ resource "local_file" "private_key" {
 output "key_pair_name" {
   value = aws_key_pair.datacenter.key_name
 }
-```
-#### Initialize Terraform
+````
+
+### Steps to Implement the Solution
+
+#### 1. Initialize Terraform
+
+To initialize Terraform and download the necessary providers:
 
 ```bash
 terraform init
 ```
-#### Validate the Configuration
+
+#### 2. Validate the Configuration
+
+Ensure that your configuration files are valid:
 
 ```bash
 terraform validate
 ```
 
-#### Review the Execution Plan
+#### 3. Review the Execution Plan
+
+Review what Terraform will do before applying changes:
 
 ```bash
 terraform plan
 ```
-#### Apply the Configuration
+
+#### 4. Apply the Configuration
+
+Apply the Terraform configuration to create the key pair:
 
 ```bash
-
 terraform apply --auto-approve
 ```
-#### Check Output
 
+#### 5. Check Output
+
+After the configuration is applied successfully, the output will display the name of the created key pair:
 
 ```bash
 key_pair_name = "datacenter-kp"
